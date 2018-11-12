@@ -251,11 +251,11 @@ button::-moz-focus-inner {
 }
 .login h3,.signup h3{
 	margin:1em 0;
-	color: #000000;
+	color: #fff;
 	font-weight: 700;
 }
 .login p{	
-	color:#00000;
+	color:#000000;
 	font-size:14px;
 	text-align:center;
 }
