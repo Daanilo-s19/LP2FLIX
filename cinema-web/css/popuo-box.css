@@ -18,7 +18,7 @@
 	text-align:center;
 }
 .signup h4 {
-	color: #000;
+	color: #fff;
 }
 .portfolio-items{
 	text-align:center;
@@ -251,11 +251,11 @@ button::-moz-focus-inner {
 }
 .login h3,.signup h3{
 	margin:1em 0;
-	color: #fff;
+	color: #000000;
 	font-weight: 700;
 }
 .login p{	
-	color:#git000000;
+	color:#00000;
 	font-size:14px;
 	text-align:center;
 }

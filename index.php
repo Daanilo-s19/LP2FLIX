@@ -14,6 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta charset="utf-8">
 	<meta name="keywords" content="Clear login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
 	<script>
+            
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
@@ -90,5 +91,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!--//copyright-->
 </body>
+
 
 </html>
