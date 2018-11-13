@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="en">
 
     <head>
-        <title>VAGABAFLIX</title>
+        <title>BACANAFLIX</title>
         <!-- Meta-Tags -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
@@ -35,7 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </head>
 
     <body>   
-        <h1>VAGABAFLIX</h1>
+        <h1>BACANAFLIX</h1>
         <?php        
         $sucesso = isset($_POST["sucesso"]) ? $_POST["sucesso"] : null;
         

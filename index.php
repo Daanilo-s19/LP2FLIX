@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="en">
 
 <head>
-	<title>VAGABAFLIX</title>
+	<title>BACANAFLIX</title>
 	<!-- Meta-Tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
@@ -26,7 +26,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //Meta-Tags -->
 	<!-- Stylesheets -->
 	<link href="css/font-awesome.css" rel="stylesheet">
-	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<link href="css/style.css" rel='stylesheet' type='text/css' />         
 	<!--// Stylesheets -->
 	<!--fonts-->
 	<!-- title -->
@@ -36,10 +36,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
-	<h1>VAGABAFLIX</h1>
+	<h1>BACANAFLIX</h1>
 	<div class="w3ls-login box box--big">
 		<!-- form starts here -->
-                <form action="cinema-web/index.php" method="post">
+                <form action="entretenimento/filmes.php" method="post">
 			<div class="agile-field-txt">
                             <label><i class="fa fa-user" aria-hidden="true"></i> LOGIN </label>
                             <input type="text" name="login" placeholder="INFORME LOGIN " required=""/>
