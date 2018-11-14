@@ -239,7 +239,7 @@ a.w3_play_icon span,a.w3_play_icon1 span,a.w3_play_icon2 span {
 p.fexi_header{
 	text-transform: uppercase;
     font-size: 1.3em;
-    color: #212121;
+    color: #ffffff;
     font-weight: bold;
     padding-bottom: 1em;
 }
@@ -256,7 +256,7 @@ p.fexi_header_para label{
     font-style: normal;
 }
 p.fexi_header_para span{
-	color: #212121;
+	color: #ffffff;
     font-size: 14px;
     font-weight: bold;
     float: left;
