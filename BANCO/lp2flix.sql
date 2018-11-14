@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 14-Nov-2018 às 20:42
--- Versão do servidor: 10.1.36-MariaDB
--- versão do PHP: 7.2.11
+-- Host: localhost
+-- Generation Time: Nov 14, 2018 at 07:48 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `midia`
+-- Table structure for table `midia`
 --
 
 CREATE TABLE `midia` (
@@ -44,7 +44,7 @@ CREATE TABLE `midia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `midia`
+-- Dumping data for table `midia`
 --
 
 INSERT INTO `midia` (`indice`, `tipo`, `genero`, `titulo`, `diretor`, `elenco`, `imagem`, `sinopse`, `ano`, `avaliacao`, `duracao`, `classificacao`) VALUES
@@ -55,13 +55,10 @@ INSERT INTO `midia` (`indice`, `tipo`, `genero`, `titulo`, `diretor`, `elenco`, 
 (5, 'filme ', 'terror', 'It: a  coisa', '', '', '', '', '2017', 0, 0, 0),
 (6, 'filme', 'terror', 'Anabelle', '', '', '', '', '2010', 0, 0, 0);
 
---
--- Indexes for dumped tables
---
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -72,36 +69,46 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`login`, `senha`, `nome`, `datanasc`) VALUES
 ('Joao', '123456', '', 0),
 ('Jose', '234567', '', 0);
 
+-- --------------------------------------------------------
+
 --
--- Indexes for dumped tables
+-- Table structure for table `visitados`
+--
+
 CREATE TABLE `visitados` (
   `login` varchar(10) NOT NULL,
-  `ident` int(4) NOT NULL
+  `ident` int(4) NOT NULL,
+  `count` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `visitados`
+-- Dumping data for table `visitados`
 --
 
-INSERT INTO `visitados` (`login`, `ident`) VALUES
-('Jose', 1),
-('Joao', 2),
-('Jose', 3),
-('Jose', 3),
-('Joao', 4),
-('Joao', 5);
+INSERT INTO `visitados` (`login`, `ident`, `count`) VALUES
+('Jose', 1, NULL),
+('Joao', 2, NULL),
+('Jose', 3, NULL),
+('Jose', 3, NULL),
+('Joao', 4, NULL),
+('Joao', 5, NULL);
 
 --
 -- Indexes for dumped tables
 --
+
 --
+-- Indexes for table `midia`
+--
+ALTER TABLE `midia`
+  ADD PRIMARY KEY (`indice`);
 
 --
 -- Indexes for table `usuarios`
@@ -110,8 +117,6 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`login`);
 COMMIT;
 
--- Indexes for table `midia`
---
-ALTER TABLE `midia`
-  ADD PRIMARY KEY (`indice`);
-COMMIT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

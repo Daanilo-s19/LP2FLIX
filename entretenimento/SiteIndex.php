@@ -145,16 +145,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         $db = new DBController();
 
                         // Selecionar registros da tabela midia
-                        $query ="SELECT  * FROM midia";
-                        $results = $db->selectDB($query);
-                        //FOREACH PARA AGRUPAR TODOS OS OBJS DO GENERO AÇÃO EM UM VETOR 
+                        $results = $db->selectDB("SELECT * FROM midia");
+                        //FOREACH PARA AGRUPAR TODOS OS OBJS DO GENERO AÇÃO EM UM VETOR
                         $filmes=[];                         
-                        foreach($results as $filmes) {
-                            $obj= new Media($filmes["indice"], $filmes["tipo"], $filmes["genero"], $filmes["titulo"], $filmes["diretor"], $filmes["elenco"], $filmes["imagem"], $filmes["sinopse"], $filmes["ano"], $filmes["avaliacao"], $filmes["duracao"], $filmes["classificacao"]);
+                        foreach($results as $midia) {
+                            $obj = new Media($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"]);
                             $filmes[] = $obj;
                            
                         }
-                        var_dump($filmes[0]);
+                        //var_dump($filmes[0]);
                          for($lista = 0; $lista<3; $lista++ ){ // O TOTAL DE LISTA É COM BASE NO NUMERO DE OBJETO DIVIDIDO POR 6
                             echo "  
                                 <li>
@@ -202,6 +201,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <div class="w3_agile_featured_movies">
                                  <?php
                                  echo "40 linhas em 2 KKKKKKKKK";
+                                 echo "<br>O CARA É BOM";
                                     require_once("../PHP/Media.php"); 
                                     $filme = new Media();                                  
                                     for ($i = 0; $i < 4; $i++) 

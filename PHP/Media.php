@@ -94,4 +94,7 @@ class Media {
                                             </div>
                                         </div>";
    }
+   public function Preferencia($ClickCount){ // RETORNA A PREFERÊNCIA A PARTIR DE QUANTAS VEZES A MIDIA FOI ASSISTIDA POR UM USUÁRIO
+   }
 }
+?>

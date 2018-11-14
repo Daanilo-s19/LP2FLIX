@@ -27,3 +27,4 @@ class Usuario {
     //INSERIR APENAS OS GET E SET QUE SERAO UTILIZADOS
 
 }
+?>

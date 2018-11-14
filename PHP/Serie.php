@@ -5,3 +5,4 @@ class Serie extends Media {
     protected $temporada;
     
 }
+?>
