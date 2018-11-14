@@ -202,7 +202,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                  echo "4OPAAA";
                                     require_once("../PHP/Media.php"); 
                                     $filme = new Media();                                  
-                                    for ($i = 0; $i < 4; $i++) 
+                                    for ($i = 0; $i < 5; $i++) 
                                         $filme->cartaz();
                                    ?>
                         </div>
@@ -211,7 +211,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                  echo "aeeeee";
                                     require_once("../PHP/Media.php"); 
                                     $filme = new Media();                                  
-                                    for ($i = 0; $i < 4; $i++) 
+                                    for ($i = 0; $i < 10; $i++) 
                                         $filme->cartaz();
                                ?>
                             
