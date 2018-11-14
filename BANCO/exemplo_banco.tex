@@ -1,0 +1,44 @@
+<?php
+  require_once("dbcontroller.php");
+  $db = new DBController();
+   
+   // Selecionar registros da tabela midia
+	echo "\n\n TODOS OS FILMES CADASTRADOS\n\n";  
+	$query ="SELECT  * FROM midia";
+	$results = $db->selectDB($query);
+  
+    foreach($results as $filmes) {
+
+       
+     	echo $filmes["nome"]."  ".$filmes["ano"]."\n";
+        
+	    }
+   // Selecionar registros da tabela usuarios união media
+   // mostrar nome de usuario e nome de filme 
+
+   echo "\n\n TODOS OS USUARIOS E OS FILMES DA TABELA VISITADOS \n\n"; 
+   $query ="SELECT  *,midia.ident,midia.nome FROM visitados inner join midia where visitados.ident = midia.ident ";
+	$results = $db->selectDB($query);
+  
+    foreach($results as $filmes) {
+
+       
+     	echo $filmes["login"]."  ".$filmes["nome"]."\n";
+        
+	    }
+		
+// Selecionar os filmes vistos por usuario	 ordenado por usuario
+
+ echo "\n\n LISTA DOS FILMES VISTOS PELOS USUARIOS \n\n"; 
+ $query ="SELECT  *,midia.ident,midia.nome FROM visitados inner join midia where visitados.ident = midia.ident GROUP BY midia.nome ORDER BY visitados.login";
+	$results = $db->selectDB($query);
+  
+    foreach($results as $filmes) {
+
+       
+     	echo $filmes["login"]."  ".$filmes["nome"]."\n";
+        
+	    }
+
+	
+  ?>
