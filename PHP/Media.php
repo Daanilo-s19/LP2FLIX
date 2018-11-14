@@ -2,21 +2,23 @@
     //LEMBRAR DE BOTAR A CLASSE COMO ABSTRATA
     //INSERIR APENAS OS GET E SET QUE SERÃO UTILIZADOS
 class Media {
-     protected $titulo, $ano,$diretor,$ator,$avaliacao,$sinopse,$classificacao,$genero,$duracao;
+     protected $indice, $tipo, $genero, $titulo,$diretor,$elenco,$imagem,$sinopse,$ano,$avaliacao,$duracao, $classificacao; // atributos
      
-     //CONSTRUTOR COMENTADO POR MOTIVO DE TESTES
-     
-    /* function __construct($titulo, $ano, $diretor, $ator, $avaliacao, $sinopse, $classificacao, $genero, $duracao) {
-         $this->titulo = $titulo;
-         $this->ano = $ano;
-         $this->diretor = $diretor;
-         $this->ator = $ator;
-         $this->avaliacao = $avaliacao;
-         $this->sinopse = $sinopse;
-         $this->classificacao = $classificacao;
-         $this->genero = $genero;
-         $this->duracao = $duracao;
-     }*/
+     //CONSTRUTOR COMENTADO POR MOTIVO DE TESTE
+    public function __construct($indice, $tipo, $genero, $titulo,$diretor,$elenco,$imagem,$sinopse,$ano,$avaliacao,$duracao, $classificacao){
+        $this->indice = $indice;
+        $this->titulo = $titulo;
+        $this->tipo = $tipo; // SERIE / FILME
+        $this->ano = $ano;
+        $this->diretor = $diretor;
+        $this->elenco = $elenco;
+        $this->avaliacao = $avaliacao;
+        $this->sinopse = $sinopse;
+        $this->genero = $genero; // DRAMA ETC ETC
+        $this->duracao = $duracao;
+        $this->imagem = $imagem;
+        $this->classificacao = $classificacao; //IDADE
+    }
      public function CadastrarFilme(){
          
      }
