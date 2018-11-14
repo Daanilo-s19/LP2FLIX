@@ -140,8 +140,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="flexslider">
                         <ul class="slides">
                         <?php
-                         require_once("../PHP/Media.php");
-                         //FOREACH PARA AGRUPAR TODOS OS OBJS DO GENERO AÇÃO EM UM VETOR                        
+                        require_once("../PHP/Media.php");
+                        require_once("../PHP/dbcontroller.php");
+                        $db = new DBController();
+
+                        // Selecionar registros da tabela midia
+                        $query ="SELECT  * FROM midia";
+                        $results = $db->selectDB($query);
+                        //FOREACH PARA AGRUPAR TODOS OS OBJS DO GENERO AÇÃO EM UM VETOR 
+                        $filmes=[];  
+                        foreach($results as $filmes) {
+                            $obj= new Media($filmes["ident"], $filmes["tipo"], $filmes["genero"], $filmes["titulo"], $filmes["diretor"], $filmes["elenco"], $filmes["imagem"], $filmes["sinopse"], $filmes["ano"], $filmes["avaliacao"], $filmes["duracao"], $filmes["classificacao"]);
+                            $filmes[] = $obj;
+                           
+                        }
+                        var_dump($filmes[0]);
                          for($lista = 0; $lista<3; $lista++ ){ // O TOTAL DE LISTA É COM BASE NO NUMERO DE OBJETO DIVIDIDO POR 6
                             echo "  
                                 <li>
