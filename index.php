@@ -39,7 +39,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<h1>BACANAFLIX</h1>
 	<div class="w3ls-login box box--big">
 		<!-- form starts here -->
-                <form action="entretenimento/filmes.php" method="post">
+                <form action="entretenimento/SiteIndex.php" method="post">
 			<div class="agile-field-txt">
                             <label><i class="fa fa-user" aria-hidden="true"></i> LOGIN </label>
                             <input type="text" name="login" placeholder="INFORME LOGIN " required=""/>

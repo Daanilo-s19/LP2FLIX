@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 html, body{
     font-size: 100%;
 font-family: 'Roboto Condensed', sans-serif;
-	background:#ffffff;
+	background:#000000;
 	margin: 0;
 }
 p,ul li,ol li{
@@ -52,7 +52,7 @@ ul#myTab {
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
     color: #fff;
     text-decoration: none;
-    background-color: #FF8D1B;
+    background-color: #cc0000;
     outline: 0;
 }
 .nav-tabs > li {
@@ -77,14 +77,14 @@ ul#myTab {
 	border: none;
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-	    background-color: #FF8D1B;
+	    background-color: #cc0000;
     border: none;
     border-radius: 0;
 	color:#fff!important;
 	}
 .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
 	color: #fff;
-		    background-color: #FF8D1B;
+		    background-color: #cc0000;
     border: none;
     border-radius: 0;
 }
@@ -201,7 +201,7 @@ ul#myTab {
 }
 .w3l-movie-text h6 a {
     font-size: 1.4em;
-    color: #222;
+    color: #ffffff;
 }
 .w3l-movie-text {
 	    margin: 0.7em 0;
@@ -209,7 +209,7 @@ ul#myTab {
 .mid-2 p {
        float: left;
     font-size: 1em;
-    color: #333;
+    color: #ffffff;
     line-height: 22px;
 }
 .block-stars {
@@ -221,7 +221,7 @@ ul.w3l-ratings li,.w3l-ratings a{
     list-style: none;
 }
 ul.w3l-ratings li i ,.w3l-ratings a i{
-    color: #ff8d1b;
+    color: #cc0000;
 }
 /*---browse-grid-----*/
 .w3l-movie-gride-agile {
@@ -253,7 +253,7 @@ i.glyphicon.glyphicon-play-circle {
     top: 3%;
     left: 4%;
     padding: 20px 0 0 0;
-    background: #ff8d1b;
+    background: #cc0000;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -273,7 +273,7 @@ i.glyphicon.glyphicon-play-circle {
     right: 18%;
     width: 0;
     height: 0;
-    border-top: 8px solid #ff8d1b;
+    border-top: 8px solid #cc0000;
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
     transform: rotate(85deg);
@@ -285,9 +285,9 @@ i.glyphicon.glyphicon-play-circle {
     box-shadow: 0px 0px 1px #999;
 }
 h4.latest-text {
-      border-left: 5px solid #ff8d1b;
+      border-left: 5px solid #cc0000;
     font-size: 2em;
-    color: #212121;
+    color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 1em;
     padding: 0.3em 0.5em;

@@ -71,8 +71,9 @@ html[xmlns] .slides {display: block;}
     right: 1.4%;
     top: 0%;
 }
+
 .flex-direction-nav .flex-prev {left:93%;}
-.flexslider:hover .flex-next {opacity: 0.8;}
+.flexslider:hover .flex-next {opacity: 0.8; }
 .flexslider:hover .flex-prev {opacity: 0.8;}
 .flexslider:hover .flex-next:hover, .flexslider:hover .flex-prev:hover {opacity: 1;}
 .flex-direction-nav .flex-disabled {opacity: .3!important; filter:alpha(opacity=30); cursor: default;}
