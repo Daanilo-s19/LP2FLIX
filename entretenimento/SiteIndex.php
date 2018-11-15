@@ -5,10 +5,11 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <title>BACANAFLIX</title>
         <!-- for-mobile-apps -->
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="One Movies Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -134,38 +135,92 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         
         <!-- Latest-tv-series -->
         <div class="Latest-tv-series">
-            <h4 class="latest-text w3_latest_text w3_home_popular">AÇÃO</h4>
+            <h4 class="latest-text w3_latest_text w3_home_popular">ANIMAÇÃO</h4>
             <div class="container">
                 <section class="slider">
                     <div class="flexslider">
                         <ul class="slides">
                         <?php
-                        require_once("../PHP/Media.php");
+                        require_once("../PHP/Filme.php");
+                        require_once("../PHP/Serie.php");
                         require_once("../PHP/dbcontroller.php");
-                        $db = new DBController();
-
-                        // Selecionar registros da tabela midia
-                        $results = $db->selectDB("SELECT * FROM midia");
-                        //FOREACH PARA AGRUPAR TODOS OS OBJS DO GENERO AÇÃO EM UM VETOR
-                        $filmes=[];                         
+                        
+                        $db = new DBController();                        
+                        $results = $db->selectDB("SELECT * FROM midia");                        
+                        $flag = 0; $lista =0;
                         foreach($results as $midia) {
-                            $obj = new Media($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"]);
-                            $filmes[] = $obj;
-                           
-                        }
-                        //var_dump($filmes[0]);
-                         for($lista = 0; $lista<3; $lista++ ){ // O TOTAL DE LISTA É COM BASE NO NUMERO DE OBJETO DIVIDIDO POR 6
-                            echo "  
-                                <li>
-                                    <div class=\"agile_tv_series_grid\">";                                                                       
-                                      for ($i = 0; $i < 6; $i++) 
-                                      $filmes[$i]->cartaz();
-                            echo "
+                            // ABRE A LISTA
+                            if(!$flag){
+                                echo "  
+                                 <li>
+                                     <div class=\"agile_tv_series_grid\">";
+                                $flag = 1;
+                                $lista++;
+                            }
+                            //MOSTRA O FILME DO GENERO
+                            if(($midia["tipo"] == "filme") && ($midia["genero"] == "Animacao")){
+                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
+                                                $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
+                                                $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                $animacao->cartaz();
+                                $lista++;
+                            }
+                            // FECHA A LISTA A CADA 7 FILMES
+                            if (($lista%7) == 0 ){
+                                echo "
                                     </div>
                                </li>";
-                         }
+                               $flag = 0;
+                            }
+                        }                       
                         ?>
-                            
+                        </ul>
+                    </div>
+                </section>                
+            </div>
+        </div>
+        
+        <!--ENXUGAR ESSA MERDA-->
+        <div class="Latest-tv-series">
+            <h4 class="latest-text w3_latest_text w3_home_popular">SERIE</h4>
+            <div class="container">
+                <section class="slider">
+                    <div class="flexslider">
+                        <ul class="slides">
+                        <?php
+                        require_once("../PHP/Filme.php");
+                        require_once("../PHP/Serie.php");
+                        require_once("../PHP/dbcontroller.php");
+                        
+                        $db = new DBController();                        
+                        $results = $db->selectDB("SELECT * FROM midia");                        
+                        $flag = 0; $lista =0;
+                        foreach($results as $midia) {
+                            // ABRE A LISTA
+                            if(!$flag){
+                                echo "  
+                                 <li>
+                                     <div class=\"agile_tv_series_grid\">";
+                                $flag = 1;
+                                $lista++;
+                            }
+                            //MOSTRA O FILME DO GENERO
+                            if(($midia["tipo"] == "serie") && ($midia["genero"] == "Animacao")){
+                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
+                                                $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
+                                                $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                $animacao->cartaz();
+                                $lista++;
+                            }
+                            // FECHA A LISTA A CADA 7 FILMES
+                            if (($lista%7) == 0 ){
+                                echo "
+                                    </div>
+                               </li>";
+                               $flag = 0;
+                            }
+                        }                       
+                        ?>
                         </ul>
                     </div>
                 </section>                

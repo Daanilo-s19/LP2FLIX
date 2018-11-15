@@ -136,11 +136,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- Latest-tv-series -->
         <div class="Latest-tv-series">
            
-                 <?php
-                       require_once("../PHP/Media.php"); 
-                       $filme = new Media();                                  
-                      $filme->Exibiçao();
-                  ?>            
+                <?php                
+                require_once("../PHP/Media.php");
+                require_once("../PHP/Filme.php");
+                require_once("../PHP/Serie.php");
+                require_once("../PHP/dbcontroller.php");
+                
+                    $db = new DBController();
+                    $results = $db->selectDB("SELECT * FROM midia");
+                    
+                    $indice = $_GET["indice"]; 
+                    foreach($results as $midia) {                            
+                        if($midia["indice"] == $_GET["indice"]){
+                            $filmes = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
+                                        $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
+                                        $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                        }
+                    }                                                                        
+                    $filmes->Exibiçao();
+                ?>            
         </div>
         
         <!-- pop-up-box -->  
