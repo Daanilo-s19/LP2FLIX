@@ -192,19 +192,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         require_once("../PHP/dbcontroller.php");
                         
                         $db = new DBController();                        
-                        $results = $db->selectDB("SELECT * FROM midia");                        
-                        $flag = 0; $lista =0;
+                        $results = $db->selectDB("SELECT * FROM midia");     
+                        var_dump($results);                   
+                        $flag = false; $lista =0;
                         foreach($results as $midia) {
                             // ABRE A LISTA
                             if(!$flag){
                                 echo "  
                                  <li>
                                      <div class=\"agile_tv_series_grid\">";
-                                $flag = 1;
+                                $flag = true;
                                 $lista++;
                             }
                             //MOSTRA O FILME DO GENERO
-                            if(($midia["tipo"] == "filme") && ($midia["genero"] == "acao")){
+                            if(($midia["tipo"] == "filme") and ($midia["genero"] == "acao")){
                                 $acao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                 $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
                                                 $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
@@ -216,7 +217,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 echo "
                                     </div>
                                </li>";
-                               $flag = 0;
+                               $flag = false;
                             }
                         }                       
                         ?>
@@ -239,14 +240,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         
                         $db = new DBController();                        
                         $results = $db->selectDB("SELECT * FROM midia");                        
-                        $flag = 0; $lista =0;
+                        $flag = false; $lista =0;
                         foreach($results as $midia) {
                             // ABRE A LISTA
                             if(!$flag){
                                 echo "  
                                  <li>
                                      <div class=\"agile_tv_series_grid\">";
-                                $flag = 1;
+                                $flag = true;
                                 $lista++;
                             }
                             //MOSTRA O FILME DO GENERO
@@ -262,7 +263,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 echo "
                                     </div>
                                </li>";
-                               $flag = 0;
+                               $flag = false;
                             }
                         }                       
                         ?>
