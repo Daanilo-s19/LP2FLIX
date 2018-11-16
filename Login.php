@@ -20,17 +20,16 @@ and open the template in the editor.
         $query = "SELECT  * FROM usuarios";
         $results = $db->selectDB($query);
 
-        $flag = 0;
+        $flag = false;
         foreach ($results as $usuario) {
-           
             if ($login == $usuario["login"] && $senha == $usuario["senha"]) {
                 setcookie("login", $login);
                 header("Location:entretenimento/SiteIndex.php");
-                $flag = 1;               
+                $flag = true;               
             }
         }
         if(!$flag)
-            header("Location:index.php?err=1");
+            header("Location:index.php?err=true");
         
         ?>
     </body>
