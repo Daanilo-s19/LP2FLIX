@@ -31,11 +31,11 @@ class DBController {
 	}
 	
 	function insertDB($query) {
-		if (mysqli_query($this->conn, $query)) {
-        echo "Novo registro criado com sucesso";
-        } else {
-           echo "Error: " . $query . "<br>" . mysqli_error($this->conn);
-    }
+            if (mysqli_query($this->conn, $query)) 
+                $flag = true;
+            else 
+                $flag = false;
+            return $flag;
 	}
 	function updateDB($query) {
 		if (mysqli_query($this->conn, $query)) {
@@ -44,6 +44,16 @@ class DBController {
            echo "Error: " . $query . "<br>" . mysqli_error($this->conn);
      }
 	}
+        
+        /*
+         function insertDB($query) {
+		if (mysqli_query($this->conn, $query)) {
+        echo "Novo registro criado com sucesso";
+        } else {
+           echo "Error: " . $query . "<br>" . mysqli_error($this->conn);
+    }
+	}
+         */
 	
 	function closeDB() {
 		mysqli_close($this->conn);

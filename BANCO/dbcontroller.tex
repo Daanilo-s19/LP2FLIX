@@ -30,6 +30,7 @@ class DBController {
 		return $rowcount;	
 	}
 	
+        //$query = "INSERT INTO usuarios (nome, login, nome) VALUES ('Thom', 'Vial', 'thom.v@some.com')";
 	function insertDB($query) {
 		if (mysqli_query($this->conn, $query)) {
         echo "Novo registro criado com sucesso";
@@ -37,6 +38,8 @@ class DBController {
            echo "Error: " . $query . "<br>" . mysqli_error($this->conn);
     }
 	}
+        
+        
 	function updateDB($query) {
 		if (mysqli_query($this->conn, $query)) {
         echo "Registro atualizado com sucesso";

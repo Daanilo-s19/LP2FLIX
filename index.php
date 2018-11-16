@@ -53,6 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         @$erro = $_GET["err"];        
         if($erro == true)
           echo "<h4> ERRO! VERIFIQUE LOGIN E SENHA </h4>";
+        
         ?>
         
 	<div class="w3ls-login box box--big">
