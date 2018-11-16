@@ -14,7 +14,7 @@ and open the template in the editor.
         require_once("PHP/dbcontroller.php");
 
         $login = $_POST['login'];
-        $senha = md5($_POST['senha']);
+        $senha = md5($_POST['senha']); /*md5 transforma a string em um hash de 32 caractere */        
         $db = new DBController();
 
         $query = "SELECT  * FROM usuarios";
