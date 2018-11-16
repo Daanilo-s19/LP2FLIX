@@ -37,31 +37,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <body>   
         <h1>BACANAFLIX</h1>
         <?php        
-        $sucesso = isset($_POST["sucesso"]) ? $_POST["sucesso"] : null;
-        
-        if($sucesso){
-            echo "<h3> CADASTRO REALIZADO COM SUCESSO </h3>";           
-            echo " <div class=\"w3ls-login box box--big\" > 
-                     <form action=\"index.php\" method=\"POST\">          
-                         <div class=\"w3ls-bot\">				
-                             <div class=\"form-end\">
-                                 <input type=\"submit\" value=\"RETORNAR\">
-                             </div>
-                         </div> 
-                     </form>
-                 </div>";
+        $sucesso = isset($_GET["sucesso"])?$_GET["sucesso"]: null;
+       
+        if($sucesso !=NULL){
+            if($sucesso){
+                echo "<h3> CADASTRO REALIZADO COM SUCESSO </h3>";           
+                echo " <div class=\"w3ls-login box box--big\" > 
+                         <form action=\"index.php\" method=\"POST\">          
+                             <div class=\"w3ls-bot\">				
+                                 <div class=\"form-end\">
+                                     <input type=\"submit\" value=\"RETORNAR\">
+                                 </div>
+                             </div> 
+                         </form>
+                     </div>";
+            }
+            else
+                echo "<h3> CADASTRO INVALIDO </h3>";
         }
         ?>  
     
         
         <div class="w3ls-login box box--big">
             <!-- form starts here -->
-            <form action="Cadastro.php" method="POST">
+            <form action="ValidarCadastro.php?" method="POST">
                 <div class="agile-field-txt">                            
-                    <input type="text" name="usuario" placeholder="NOME DE LOGIN" required=""/>
+                    <input type="text" name="login" placeholder="NOME DE LOGIN" required=""/>
                 </div>
                 <div class="agile-field-txt">                           
-                    <input type="password" name="password" placeholder="INFORME SENHA " required="" id="myInput" />			
+                    <input type="password" name="senha" placeholder="INFORME SENHA " required="" id="myInput" />			
                 </div>
                 <div class="agile-field-txt">                           
                     <input type="email" name="email" placeholder="SEU EMAIL" required="" id="myInput" />			
