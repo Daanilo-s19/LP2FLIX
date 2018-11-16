@@ -302,29 +302,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                  <?php
                                  echo "40 linhas em 2 KKKKKKKKK";
                                  echo "<br>O CARA É BOM";
-                                    require_once("../PHP/Media.php"); 
-                                    $filme = new Media();                                  
-                                    for ($i = 0; $i < 4; $i++) 
-                                        $filme->cartaz();
+                                    require_once("../PHP/Filme.php");
+                                    foreach($results as $midia) {
+                                        
+                                        if(($midia["tipo"] == "serie")){
+                                            $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
+                                                            $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
+                                                            $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                            $animacao->cartaz();                                            
+                                        }
+                                    }
+                                    
                                    ?>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
                                 <?php
-                                 echo "4OPAAA";
-                                    require_once("../PHP/Media.php"); 
-                                    $filme = new Media();                                  
-                                    for ($i = 0; $i < 5; $i++) 
-                                        $filme->cartaz();
+                                 require_once("../PHP/Filme.php");
+                                 foreach($results as $midia) {                                      
+                                            $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
+                                                            $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
+                                                            $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                            $animacao->cartaz();
+                                    }
+                                    
                                    ?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
                              <?php
-                                 echo "aeeeee";
-                                    require_once("../PHP/Media.php"); 
-                                    $filme = new Media();                                  
-                                    for ($i = 0; $i < 10; $i++) 
-                                        $filme->cartaz();
+                                 require_once("../PHP/Serie.php");
+                                 foreach($results as $midia) {                                      
+                                            $animacao = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
+                                                            $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
+                                                            $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                                            $animacao->cartaz();
+                                    }
                                ?>
                             
                         </div>                        

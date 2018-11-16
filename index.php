@@ -23,10 +23,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			window.scrollTo(0, 1);
 		}
 	</script>
+        <script>
+				function myFunction() {
+					var x = document.getElementById("myInput");
+					if (x.type === "password") {
+						x.type = "text";
+					} else {
+						x.type = "password";
+					}
+				}
+			</script>
 	<!-- //Meta-Tags -->
 	<!-- Stylesheets -->
 	<link href="css/font-awesome.css" rel="stylesheet">
-	<link href="css/style.css" rel='stylesheet' type='text/css' />         
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+      
 	<!--// Stylesheets -->
 	<!--fonts-->
 	<!-- title -->
@@ -37,9 +48,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <body>
 	<h1>BACANAFLIX</h1>
+        
+        <?php
+        @$erro = $_GET["err"];        
+        if($erro == true)
+          echo "<h4> ERRO! VERIFIQUE LOGIN E SENHA </h4>";
+        ?>
+        
 	<div class="w3ls-login box box--big">
 		<!-- form starts here -->
-                <form action="entretenimento/SiteIndex.php" method="post">
+                <form action="Login.php" method="post">
 			<div class="agile-field-txt">
                             <label><i class="fa fa-user" aria-hidden="true"></i> LOGIN </label>
                             <input type="text" name="login" placeholder="INFORME LOGIN " required=""/>
@@ -53,16 +71,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 			<!-- script for show password -->
-			<script>
-				function myFunction() {
-					var x = document.getElementById("myInput");
-					if (x.type === "password") {
-						x.type = "text";
-					} else {
-						x.type = "password";
-					}
-				}
-			</script>
+			
 			<!-- //script ends here -->
 			<div class="w3ls-bot">
 				<div class="switch-agileits">
@@ -71,7 +80,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<span class="slider round"></span>Permanecer Logado</label>
 				</div>
 				<div class="form-end">
-					<input type="submit" value="LOGIN">  
+					<input type="submit" value="Entrar">  
                   </form>
 				</div> 
         
