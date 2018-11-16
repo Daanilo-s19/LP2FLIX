@@ -179,10 +179,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </section>                
             </div>
         </div>
-        
-        <!--ENXUGAR ESSA MERDA-->
+         <!-- Latest-tv-series -->
         <div class="Latest-tv-series">
-            <h4 class="latest-text w3_latest_text w3_home_popular">SERIE</h4>
+            <h4 class="latest-text w3_latest_text w3_home_popular">AÇÃO</h4>
             <div class="container">
                 <section class="slider">
                     <div class="flexslider">
@@ -205,10 +204,56 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 $lista++;
                             }
                             //MOSTRA O FILME DO GENERO
-                            if(($midia["tipo"] == "serie") && ($midia["genero"] == "Animacao")){
-                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
+                            if(($midia["tipo"] == "filme") && ($midia["genero"] == "acao")){
+                                $acao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                 $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
                                                 $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                $acao->cartaz();
+                                $lista++;
+                            }
+                            // FECHA A LISTA A CADA 7 FILMES
+                            if (($lista%7) == 0 ){
+                                echo "
+                                    </div>
+                               </li>";
+                               $flag = 0;
+                            }
+                        }                       
+                        ?>
+                        </ul>
+                    </div>
+                </section>                
+            </div>
+        </div>
+        
+        <!--ENXUGAR ESSA MERDA-->
+        <div class="Latest-tv-series">
+            <h4 class="latest-text w3_latest_text w3_home_popular">SERIE</h4>
+            <div class="container">
+                <section class="slider">
+                    <div class="flexslider">
+                        <ul class="slides">
+                        <?php                       
+                        require_once("../PHP/Serie.php");
+                        require_once("../PHP/dbcontroller.php");
+                        
+                        $db = new DBController();                        
+                        $results = $db->selectDB("SELECT * FROM midia");                        
+                        $flag = 0; $lista =0;
+                        foreach($results as $midia) {
+                            // ABRE A LISTA
+                            if(!$flag){
+                                echo "  
+                                 <li>
+                                     <div class=\"agile_tv_series_grid\">";
+                                $flag = 1;
+                                $lista++;
+                            }
+                            //MOSTRA O FILME DO GENERO
+                            if(($midia["tipo"] == "serie")){
+                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
+                                                $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
+                                                $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
                                 $animacao->cartaz();
                                 $lista++;
                             }

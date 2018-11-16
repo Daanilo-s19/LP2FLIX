@@ -60,7 +60,7 @@
          <div class=\"container\">
                    <div class=\"col-md-6 agile_tv_series_grid_left\">
                                                 <div class=\"w3ls_market_video_grid1\">
-                                                   <a href=\"https://www.youtube.com/watch?v=VFsmuRPClr4\" class=\"hvr-shutter-out-horizontal\"> <img src={$this->imagem} alt=\" \" class=\"img-responsive\" />
+                                                   <a href=\"https://www.youtube.com/watch?v=VFsmuRPClr4\" class=\"hvr-shutter-out-horizontal\"> <img src=\"ExibirImages/{$this->imagem}\"alt=\" \" class=\"img-responsive\" />
                                                     <a href=\"https://www.youtube.com/watch?v=VFsmuRPClr4\"  class=\"w3_play_icon\" href=\"#small-dialog\">
                                                         <span class=\"glyphicon glyphicon-play-circle\" aria-hidden=\"true\"></span>
                                                     </a>
@@ -69,17 +69,13 @@
                                     <div class=\"col-md-6 agile_tv_series_grid_right\">
                                                 <p class=\"fexi_header_para\"><span class=\"conjuring_w3\">Sinopse<label>:</label></span>{$this->sinopse}</p>
                                                 <p class=\"fexi_header_para\"><span>Data de lançamento<label>:</label></span>{$this->ano}</p>
-                                                <p class=\"fexi_header_para\"><span>Classificação<label>:</label></span>{$this->classificacao}</p>
-                                                  <p class=\"fexi_header_para\"><span>Duração<label>:</label></span>{$this->duracao}</p>
+                                                <p class=\"fexi_header_para\"><span>Classificação<label>:</label></span>{$this->classificacao} anos</p>
+                                                  <p class=\"fexi_header_para\"><span>Duração<label>:</label></span>{$this->duracao} min.</p>
                                                 <p class=\"fexi_header_para\"><span>Gênero<label>:</label></span>{$this->genero} </p>
                                                  <p class=\"fexi_header_para\"><span>Diretor<label>:</label></span>{$this->diretor}</p>
                                                  <p class=\"fexi_header_para\"><span>Elenco<label>:</label> </span>{$this->elenco}</p>
-                                                <p class=\"fexi_header_para fexi_header_para1\"><span>Estrela<label>:</label>{$this->avaliacao}</span>
+                                                <p class=\"fexi_header_para fexi_header_para1\"><span>Estrela<label>:</label></span>{$this->avaliacao}
                                                     <a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a>
-                                                    <a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a>
-                                                    <a href=\"#\"><i class=\"fa fa-star-half-o\" aria-hidden=\"true\"></i></a>
-                                                    <a href=\"#\"><i class=\"fa fa-star-o\" aria-hidden=\"true\"></i></a>
-                                                    <a href=\"#\"><i class=\"fa fa-star-o\" aria-hidden=\"true\"></i></a>
                                                 </p>
                                             </div>
                                         </div>";
