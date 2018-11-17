@@ -140,7 +140,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 require_once("../PHP/Media.php");
                 require_once("../PHP/Filme.php");
                 require_once("../PHP/Serie.php");
-                require_once("../PHP/dbcontroller.php");
+                require_once("../BANCO/dbcontroller.php");
                 
                     $db = new DBController();
                     $results = $db->selectDB("SELECT * FROM midia");

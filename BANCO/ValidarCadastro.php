@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once("PHP/dbcontroller.php");
+        require_once("dbcontroller.php");
         
          $db = new DBController();
         
@@ -23,10 +23,10 @@ and open the template in the editor.
         $query = "INSERT INTO usuarios (login, senha, email,datanasc) VALUES ('$login', '$senha', '$email','$datanasc')";
 	if ($db->insertDB($query)== true){
             setcookie("login", $login);
-            header("Location:Cadastro.php?sucesso=1");
+            header("Location:../Cadastro.php?sucesso=1");
         }
         else{
-            header("Location:Cadastro.php?sucesso=0");
+            header("Location:../Cadastro.php?sucesso=0");
             
         }
 	

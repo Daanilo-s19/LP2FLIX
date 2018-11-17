@@ -37,6 +37,14 @@ class DBController {
                 $flag = false;
             return $flag;
 	}
+        
+        function deleteDB($query) {
+            if (mysqli_query($this->conn, $query)) 
+                $flag = true;
+            else 
+                $flag = false;
+            return $flag;
+	}
 	function updateDB($query) {
 		if (mysqli_query($this->conn, $query)) {
         echo "Registro atualizado com sucesso";

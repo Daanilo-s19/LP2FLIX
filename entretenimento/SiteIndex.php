@@ -143,10 +143,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <?php
                         require_once("../PHP/Filme.php");
                         require_once("../PHP/Serie.php");
-                        require_once("../PHP/dbcontroller.php");
+                        require_once("../BANCO/dbcontroller.php");
                         
                         $db = new DBController();                        
-                        $results = $db->selectDB("SELECT * FROM midia");                        
+                        $results = $db->selectDB("SELECT * FROM midia");  
+                        
                         $flag = false; $lista =0;
                         foreach($results as $midia) {
                             // ABRE A LISTA
@@ -186,14 +187,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <section class="slider">
                     <div class="flexslider">
                         <ul class="slides">
-                        <?php
-                        require_once("../PHP/Filme.php");
-                        require_once("../PHP/Serie.php");
-                        require_once("../PHP/dbcontroller.php");
-                        
-                        $db = new DBController();                        
-                        $results = $db->selectDB("SELECT * FROM midia");     
-                                         
+                        <?php                        
                         $flag = false; $lista =0;
                         foreach($results as $midia) {
                             // ABRE A LISTA
@@ -235,11 +229,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="flexslider">
                         <ul class="slides">
                         <?php                       
-                        require_once("../PHP/Serie.php");
-                        require_once("../PHP/dbcontroller.php");
                         
-                        $db = new DBController();                        
-                        $results = $db->selectDB("SELECT * FROM midia");                        
+                                           
                         $flag = false; $lista =0;
                         foreach($results as $midia) {
                             // ABRE A LISTA
@@ -303,7 +294,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                  <?php
                                  echo "40 linhas em 2 KKKKKKKKK";
                                  echo "<br>O CARA É BOM";
-                                    require_once("../PHP/Filme.php");
+                                 
                                     foreach($results as $midia) {
                                         
                                         if(($midia["tipo"] == "serie")){
@@ -319,7 +310,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
                                 <?php
-                                 require_once("../PHP/Filme.php");
                                  foreach($results as $midia) {                                      
                                             $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                             $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
@@ -331,7 +321,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
                              <?php
-                                 require_once("../PHP/Serie.php");
                                  foreach($results as $midia) {                                      
                                             $animacao = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                             $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],

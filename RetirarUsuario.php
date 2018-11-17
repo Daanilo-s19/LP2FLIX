@@ -39,51 +39,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <?php        
         $sucesso = isset($_GET["sucesso"])?$_GET["sucesso"]: null;
        
-        if($sucesso !=NULL){
+        if($sucesso != NULL){
             if($sucesso){
-                echo "<h3> CADASTRO REALIZADO COM SUCESSO </h3>";           
-                echo " <div class=\"w3ls-login box box--big\" > 
-                         <form action=\"index.php\" method=\"POST\">          
-                             <div class=\"w3ls-bot\">				
-                                 <div class=\"form-end\">
-                                     <input type=\"submit\" value=\"RETORNAR\">
+                echo "<h3> USUÁRIO RETIRADO </h3>";           
+                echo " <div class=\"w3ls-login box box--big\" >
+                        <div class=\"w3ls-bot\">
+                            <div class=\"form-end\">
+                                    <form action=\"RetirarUsuario.php\" method=\"POST\">  
+                                        <input type=\"submit\" value=\"CONTINUAR\">
+                                    </form>
+                            </div>
+                        </div> 
+                             <div class=\"w3ls-bot\">
+                                <div class=\"form-end\">
+                                    <form action=\"IndexMASTER.php\" method=\"POST\">
+                                        <input type=\"submit\" value=\"RETORNAR\">
+                                    </form>
                                  </div>
                              </div> 
-                         </form>
-                     </div>";
+                         
+                    </div>";
             }
             else
                 echo "<h3> CADASTRO INVALIDO </h3>";
-        }
-        ?>  
-    
+        }else
         
-        <div class="w3ls-login box box--big">
+      echo "  <div class=\"w3ls-login box box--big\">
             <!-- form starts here -->
-            <form action="BANCO/ValidarCadastro.php?" method="POST">
-                <div class="agile-field-txt">                            
-                    <input type="text" name="login" placeholder="NOME DE LOGIN" required=""/>
-                </div>
-                <div class="agile-field-txt">                           
-                    <input type="password" name="senha" placeholder="INFORME SENHA " required="" id="myInput" />			
-                </div>
-                <div class="agile-field-txt">                           
-                    <input type="email" name="email" placeholder="SEU EMAIL" required="" id="myInput" />			
-                </div>	
-                <div class="agile-field-txt">                           
-                    <input type="number" name="datanasc" placeholder="ANO DE NASCIMENTO" min="1900" max="2018" required="" id="myInput" />			
-                </div>
-                <div class="w3ls-bot">				
-                    <div class="form-end">
-                        <input type="hidden" name="sucesso" value="1" >
-                        <input type="submit" value="CADASTRAR"> 
+            <form action=\"BANCO/RetirarCadastro.php\" method=\"POST\">
+                <div class=\"agile-field-txt\">                            
+                    <input type=\"text\" name=\"login\" placeholder=\"NOME DE LOGIN\" required=\"\"/>
+                </div>   
+                <div class=\"w3ls-bot\">				
+                    <div class=\"form-end\">
+                        <input type=\"hidden\" name=\"sucesso\" value=\"1\" >
+                        <input type=\"submit\" value=\"RETIRAR USUÁRIO\"> 
                     </div> 
 
-                    <div class="clearfix"></div>                       
+                    <div class=\"clearfix\"></div>                       
                 </div> 
             </form>
-        </div>
-
+        </div>";
+    ?>
         <!-- //form ends here -->
         <!--copyright-->
         <div class="copy-wthree">
