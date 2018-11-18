@@ -62,16 +62,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>";
                 
                 // ATUALIZAR OS INDICES PARA NAO DAR MERDA
-                /*$db = new DBController();
+                $db = new DBController();
                 $results = $db->selectDB("SELECT * FROM midia");
                 $i = 0;
-                foreach ($results as $midia){
-                 $i++; $val = $midia["indice"];
-                 $query = "UPDATE SET midia indice = '$i' WHERE indice = '$val'  ";
-                    if ($db->insertDB($query) == true) {
-                        echo " indice atualizado";
-                   }
-                }*/
+                foreach ($results as $midia){                 
+                 $query = "UPDATE midia SET  indice = '$i' WHERE indice = '{$midia["indice"]}'";
+                    if ($db->insertDB($query) == true)
+                        $i++;
+                   
+                }
                 
             } else
                 echo "<h3> CADASTRO INVALIDO </h3>";

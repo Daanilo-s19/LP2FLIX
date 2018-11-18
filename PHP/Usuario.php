@@ -1,4 +1,5 @@
 <?php
+
 class Usuario {
     protected $login,$senha,$nome,$datanasc;
     function __construct($login, $senha, $nome, $datanasc) {
@@ -6,14 +7,17 @@ class Usuario {
         $this->senha = $senha;
         $this->nome = $nome;
         $this->datanasc = $datanasc;
+         
     }
-    public function CadastrarUsuario(){
+    
+    public function CadastrarUsuario(){       
         
     }
     public function RetirarUsuario(){
         
     }
     public function ValidarUsuario(){
+        
         
     }
     public function Assistidos(){

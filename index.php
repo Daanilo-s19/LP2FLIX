@@ -58,7 +58,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         
 	<div class="w3ls-login box box--big">
 		<!-- form starts here -->
-                <form action="BANCO/Login.php" method="post">
+                <form action="BANCO/Login.php" method="POST">
 			<div class="agile-field-txt">
                             <label><i class="fa fa-user" aria-hidden="true"></i> LOGIN </label>
                             <input type="text" name="login" placeholder="INFORME LOGIN " required=""/>

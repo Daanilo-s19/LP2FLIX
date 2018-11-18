@@ -66,28 +66,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </script>
         <!-- start-smoth-scrolling -->
         <!-- flexSlider -->
-                <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
-                <script defer src="js/jquery.flexslider.js"></script>
-                <script type="text/javascript">
-                    $(window).load(function () {
-                    $('.flexslider').flexslider({
-                        animation: "slide",
-                        start: function (slider) {
-                            $('body').removeClass('loading');
-                        }
-                    });
-                    });
-                </script>
-                <!-- //flexSlider -->
-                
+        <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
+        <script defer src="js/jquery.flexslider.js"></script>
+        <script type="text/javascript">
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function (slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+        </script>
+        <!-- //flexSlider -->
+
     </head>
 
     <body>
         <!-- header -->
         <div class="header">
-           <?php require_once 'BaseSite.php';
-           $head = new BaseSite(); $head->Header();
-           ?>
+            <?php
+            require_once 'BaseSite.php';
+            $head = new BaseSite();
+            $head->Header();
+            ?>
         </div>
         <!-- //header -->      
         <script>
@@ -111,8 +113,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                         <nav>
-                             <?php require_once 'BaseSite.php';
-                            $nav = new BaseSite(); $nav->Nav();
+                            <?php
+                            require_once 'BaseSite.php';
+                            $nav = new BaseSite();
+                            $nav->Nav();
                             ?>
                         </nav>
                     </div>
@@ -120,8 +124,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
         </div>
         <!-- //nav -->
-       
-       
+
+
         <div class="general_social_icons">
             <nav class="social">
                 <ul>
@@ -132,31 +136,54 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </ul>
             </nav>
         </div>
-        
+
         <!-- Latest-tv-series -->
         <div class="Latest-tv-series">
-           
-                <?php                
-                require_once("../PHP/Media.php");
-                require_once("../PHP/Filme.php");
-                require_once("../PHP/Serie.php");
-                require_once("../BANCO/dbcontroller.php");
+
+            <?php
+            require_once("../PHP/Media.php");
+            require_once("../PHP/Filme.php");
+            require_once("../PHP/Serie.php");
+            require_once("../BANCO/dbcontroller.php");
+            
+            $db = new DBController();            
+            $login = $_GET["login"];
+            $indice = $_GET["indice"];
+            $vistado = $login.'-'.$indice;// GAMBIARRA
+            $flag = false;
+            
+            //VERIFICA SE O USUÁRIO JÁ ESTÁ NO BD DE VISITADOS
+            $results = $db->selectDB("SELECT * FROM visitados");                
+            foreach ($results as $midia){
+                if($midia["login"] == $vistado){                    
+                    $count = $midia["count"];
+                    $flag = TRUE;  
+                }
+
+            }
+            // SE NAO, INSIRA-O, SE SIM, ATUALIZE O CONTADOR
+            if(!$flag){
+                $query = "INSERT INTO visitados (login, indice, count) VALUES ('$login-$indice', '$indice', '0')";
+                $db->insertDB($query);                    
+            }else{
+                $count++;
+                $query = "UPDATE visitados SET count = '$count' WHERE login = '$login-$indice'";
+                $db->insertDB($query);
+            }
                 
-                    $db = new DBController();
-                    $results = $db->selectDB("SELECT * FROM midia");
-                    
-                    $indice = $_GET["indice"]; 
-                    foreach($results as $midia) {                            
-                        if($midia["indice"] == $_GET["indice"]){
-                            $filmes = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                        $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                        $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                        }
-                    }                                                                        
+            // EXIBE O FILME SELECIONADO. REFAZ O OBJ A PARTIR DO INDICE
+            $results = $db->selectDB("SELECT * FROM midia");
+            foreach ($results as $midia) {
+                if ($midia["indice"] == $_GET["indice"]) {
+                    $filmes = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
                     $filmes->Exibiçao();
-                ?>            
+                }
+            }
+            
+            ?> 
+            
         </div>
-        
+
         <!-- pop-up-box -->  
         <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
         <!--//pop-up-box -->
@@ -170,8 +197,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <iframe src="https://player.vimeo.com/video/165197924?color=ffffff&title=0&byline=0&portrait=0"></iframe>
         </div>        
         <!-- //Latest-tv-series -->
-       
-       <!-- general -->
+
+        <!-- general -->
         <div class="general">
             <h4 class="latest-text w3_latest_text">PENSANDO EM VOCÊ</h4>
             <div class="container">
@@ -184,53 +211,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
-                                 <?php
-                                 echo "40 linhas em 2 KKKKKKKKK";
-                                 echo "<br>O CARA É BOM";
-                                    require_once("../PHP/Filme.php");
-                                    foreach($results as $midia) {
-                                        
-                                        if(($midia["tipo"] == "serie")){
-                                            $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                                            $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                                            $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                            $animacao->cartaz();                                            
-                                        }
+                                <?php
+                                echo "40 linhas em 2 KKKKKKKKK";
+                                echo "<br>O CARA É BOM";
+                                require_once("../PHP/Filme.php");
+                                foreach ($results as $midia) {
+
+                                    if (($midia["tipo"] == "serie")) {
+                                        $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                        $animacao->cartaz($_GET["login"]);
                                     }
-                                    
-                                   ?>
+                                }
+                                ?>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
-                                <?php
-                                 require_once("../PHP/Filme.php");
-                                 foreach($results as $midia) {                                      
-                                            $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                                            $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                                            $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                            $animacao->cartaz();
-                                    }
-                                    
-                                   ?>
+<?php
+require_once("../PHP/Filme.php");
+foreach ($results as $midia) {
+    $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+    $animacao->cartaz($_GET["login"]);
+}
+?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                             <?php
-                                 require_once("../PHP/Serie.php");
-                                 foreach($results as $midia) {                                      
-                                            $animacao = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                                            $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                                            $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                                            $animacao->cartaz();
-                                    }
-                               ?>
-                            
+                            <?php
+                            require_once("../PHP/Serie.php");
+                            foreach ($results as $midia) {
+                                $animacao = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                                $animacao->cartaz($_GET["login"]);
+                            }
+                            ?>
+
                         </div>                        
                     </div>
                 </div>
             </div>
         </div>
         <!-- //general -->
-        
+
         <!-- footer -->
         <div class="footer">
             <div class="container">
@@ -252,18 +271,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         <script>
-                    $(document).ready(function () {
-                        $(".dropdown").hover(
-                                function () {
-                                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-                                    $(this).toggleClass('open');
-                                },
-                                function () {
-                                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-                                    $(this).toggleClass('open');
-                                }
-                        );
-                    });
+            $(document).ready(function () {
+                $(".dropdown").hover(
+                        function () {
+                            $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                            $(this).toggleClass('open');
+                        },
+                        function () {
+                            $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                            $(this).toggleClass('open');
+                        }
+                );
+            });
         </script>
         <!-- //Bootstrap Core JavaScript -->
         <!-- here stars scrolling icon -->

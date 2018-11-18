@@ -26,9 +26,9 @@
          
      }
 
-    public function cartaz(){
+    public function cartaz($login){
        echo "  <div class=\"col-md-2 w3l-movie-gride-agile\">
-                                            <a href=\"ExibirFilme.php?indice={$this->indice}\" class=\"hvr-shutter-out-horizontal\"><img src={$this->imagem} title=\"album-name\" class=\"img-responsive\" alt=\" \" />
+                                            <a href=\"ExibirFilme.php?indice={$this->indice}&login=$login\" class=\"hvr-shutter-out-horizontal\"><img src={$this->imagem} title=\"album-name\" class=\"img-responsive\" alt=\" \" />
                                                 <div class=\"w3l-action-icon\"><i class=\"fa fa-play-circle\" aria-hidden=\"true\"></i></div>
                                             </a>
                                             <div class=\"mid-1 agileits_w3layouts_mid_1_home\">

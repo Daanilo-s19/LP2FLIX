@@ -145,6 +145,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         require_once("../PHP/Serie.php");
                         require_once("../BANCO/dbcontroller.php");
                         
+                        
+                        
                         $db = new DBController();                        
                         $results = $db->selectDB("SELECT * FROM midia");  
                         
@@ -163,7 +165,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                 $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
                                                 $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                $animacao->cartaz();
+                                $animacao->cartaz( $_GET["login"]);
                                 $lista++;
                             }
                             // FECHA A LISTA A CADA 7 FILMES
@@ -203,7 +205,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 $acao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                 $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
                                                 $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                $acao->cartaz();
+                                $acao->cartaz($_GET["login"]);
                                 $lista++;
                             }
                             // FECHA A LISTA A CADA 7 FILMES
@@ -246,7 +248,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                 $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
                                                 $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                                $animacao->cartaz();
+                                $animacao->cartaz($_GET["login"]);
                                 $lista++;
                             }
                             // FECHA A LISTA A CADA 7 FILMES
@@ -301,7 +303,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                             $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
                                                             $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                            $animacao->cartaz();                                            
+                                            $animacao->cartaz($_GET["login"]);                                            
                                         }
                                     }
                                     
@@ -314,7 +316,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                             $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
                                                             $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                            $animacao->cartaz();
+                                            $animacao->cartaz($_GET["login"]);
                                     }
                                     
                                    ?>
@@ -325,7 +327,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             $animacao = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
                                                             $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
                                                             $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                                            $animacao->cartaz();
+                                            $animacao->cartaz($_GET["login"]);
                                     }
                                ?>
                             

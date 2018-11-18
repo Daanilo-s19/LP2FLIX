@@ -30,7 +30,7 @@ and open the template in the editor.
             
             else if ($login == $usuario["login"] && $senha == $usuario["senha"]) {
                 setcookie("login", $login);
-                header("Location:../entretenimento/SiteIndex.php");
+                header("Location:../entretenimento/SiteIndex.php?login={$usuario["login"]}");
                 $flag = true;               
             }
         }
