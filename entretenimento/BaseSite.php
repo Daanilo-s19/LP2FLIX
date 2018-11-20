@@ -1,9 +1,9 @@
 <?php
 class BaseSite {
-    public function Header(){
+    public function Header($login){
         echo " <div class=\"container\">
                 <div class=\"w3layouts_logo\">
-                    <a href=\"SiteIndex.php\" ><h1>BACANA<span>FLIX</span></h1></a>
+                    <a href=\"SiteIndex.php?login=$login\" ><h1>BACANA<span>FLIX</span></h1></a>
                 </div>
                 <div class=\"w3_search\">
                     <form action=\"#\" method=\"post\">
@@ -15,10 +15,10 @@ class BaseSite {
                 <div class=\"clearfix\"> </div>
             </div>";
     }
-    public function Nav(){
+    public function Nav($login){
         echo "     <ul class=\"nav navbar-nav\">
                                 <li ><a href=\"#\"></a></li>
-                                <li><a href=\"SiteIndex.php\">Principal</a></li>
+                                <li><a href=\"SiteIndex.php?login=$login\">Principal</a></li>
                                 <li class=\"dropdown\">
                                     <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">FILMES<b class=\"caret\"></b></a>
                                     <ul class=\"dropdown-menu multi-column columns-3\">
@@ -56,7 +56,7 @@ class BaseSite {
                                 </li>
                                 <li><a href=\"series.html\">SÉRIES</a></li>                                
                                 <li><a href=\"short-codes.html\">Perfumarias</a></li>
-                                <li><a href=\"list.html\">lista de A-Z </a></li>
+                                <li><a href=\"../index.php\">SAIR</a></li>
                                 <li><a href=\"#\"></a></li> 
                             </ul>";
         

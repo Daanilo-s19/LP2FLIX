@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17-Nov-2018 às 04:46
+-- Generation Time: 20-Nov-2018 às 09:57
 -- Versão do servidor: 10.1.36-MariaDB
 -- versão do PHP: 7.2.11
 
@@ -51,11 +51,11 @@ CREATE TABLE `midia` (
 
 INSERT INTO `midia` (`indice`, `tipo`, `genero`, `titulo`, `diretor`, `elenco`, `imagem`, `sinopse`, `ano`, `avaliacao`, `duracao`, `classificacao`, `temporada`, `bilheteria`) VALUES
 (1, 'filme', 'Animacao', 'A era do gelo', ' Chris Wedge', 'John Leguizamo, Ray Romano, Denis Leary, Chris Wedge, ', 'images/c6.jpg', 'Vinte mil anos atrÃ¡s, num mundo coberto de gelo, o mamute Manfred e a preguiÃ§a Sid resgatam um bebÃª humano Ã³rfÃ£o. Agora, os dois vÃ£o enfrentar muitas aventuras atÃ© devolver o filhote de gente Ã  sua tribo, que migrou para um novo acampamento.', '2002', 0, 103, 0, 0, 0),
-(2, 'filme', 'Animacao', 'A vida secreta dos Pets', 'Chris Renaud, Yarrow Cheney', ' Kevin Hart, Jenny Slate, Louis C.K., Eric Stonestreet, MAIS', 'images/m20.jpg', 'Max é um cãozinho que tem sua vida virada de cabeça para baixo quando seu dono traz para casa um vira-lata desleixado chamado Duke. Mas as desavenças terminam quando um coelho quer se vingar de todos os pets que tem dono.', '2016', 8, 100, 0, 0, 0),
-(3, 'filme', 'Animacao', 'Moana', 'Ron Clements, John Musker', ' Auli\i Cravalho, Dwayne Johnson, Jemaine Clement, MAIS', 'images/c1.jpg', 'Uma jovem decide velejar através do Oceano Pacífico, com a ajuda de um semi-deus, em uma viagem que pode mudar a vida de todos.', '2017', 9, 113, 0, 0, 0),
+(2, 'filme', 'Animacao', 'A vida secreta dos Pets', 'Chris Renaud, Yarrow Cheney', ' Kevin Hart, Jenny Slate, Louis C.K., Eric Stonestreet, MAIS', 'images/m20.jpg', 'Max é um cãozinho que tem sua vida virada de cabeça para baixo quando seu dono traz para casa um vira-lata desleixado chamado Duke. Mas as desavenças terminam quando um coelho quer se vingar de todos os pets que tem dono.', '2016', 8, 100, 0, 0, 10000000),
+(3, 'filme', 'Animacao', 'Moana', 'Ron Clements, John Musker', ' Aulii Cravalho, Dwayne Johnson, Jemaine Clement, MAIS', 'images/c1.jpg', 'Uma jovem decide velejar através do Oceano Pacífico, com a ajuda de um semi-deus, em uma viagem que pode mudar a vida de todos.', '2017', 9, 113, 0, 0, 0),
 (4, 'filme', 'Animacao', 'O rei Leão', '\r\nRoger Allers, Rob Minkoff', ' Garcia Júnior, James Earl Jones', 'images/a1.jpg', 'Mufasa (voz de James Earl Jones), o Rei Leão, e a rainha Sarabi (voz de Madge Sinclair) apresentam ao reino o herdeiro do trono, Simba (voz de Matthew Broderick). O recém-nascido recebe a bênção do sábio babuíno Rafiki (voz de Robert Guillaume), mas ao crescer é envolvido nas artimanhas de seu tio Scar (voz de Jeremy Irons), o invejoso e maquiavélico irmão de Mufasa, que planeja livrar-se do sobrinho e herdar o trono', '1994', 10, 89, 0, 0, 0),
 (5, 'filme', 'Animacao', 'Como Treinar o seu Dragão 2', 'Dean DeBlois', 'Rodrigo Lombardi, Jay Baruchel, Cate Blanchett mais', 'images/a2.jpg', 'Cinco anos após convencer os habitantes de seu vilarejo que os dragões não devem ser combatidos, Soluço (voz de Jay Baruchel) convive com seu dragão Fúria da Noite, e estes animais integraram pacificamente a rotina dos moradores da ilha de Berk. ', '2014', 10, 0, 0, 0, 0),
-(6, 'filme', 'Animacao', 'A Bela e a Fera', 'Gary Trousdale, Kirk Wise', 'Paige O\Hara, Robby Benson, Jerry Orbach mais', 'images/a3.jpg', 'Em uma pequena aldeia da França vive Belle, uma jovem inteligente que é considerada estranha pelo moradores da localidade, e seu pai, Maurice, um inventor que é visto como um louco.', '2010', 5, 89, 6, 0, 0),
+(6, 'filme', 'Animacao', 'A Bela e a Fera', 'Gary Trousdale, Kirk Wise', 'Paige OHara, Robby Benson, Jerry Orbach mais', 'images/a3.jpg', 'Em uma pequena aldeia da França vive Belle, uma jovem inteligente que é considerada estranha pelo moradores da localidade, e seu pai, Maurice, um inventor que é visto como um louco.', '2010', 5, 89, 6, 0, 0),
 (7, 'filme', 'Animacao', 'Viva - A vida é um festa', 'Lee Unkrich', 'Anthony Gonzalez (VIII), Benjamin Bratt, Gael García Bernal', 'images/a4.jpg', 'Miguel é um menino de 12 anos que quer muito ser um músico famoso, mas ele precisa lidar com sua família que desaprova seu sonho. Determinado a virar o jogo, ele acaba desencadeando uma série de eventos ligados a um mistério de 100 anos. A aventura, com inspiração no feriado mexicano do Dia dos Mortos, acaba gerando uma extraordinária reunião familiar.', '2018', 10, 105, 0, 0, 0),
 (8, 'filme', 'Animacao', 'Divertida Mente', ' Pete Docter', '\r\nMiá Mello, Otaviano Costa', 'images/a5.jpg', 'Riley é uma garota divertida de 11 anos de idade, que deve enfrentar mudanças importantes em sua vida quando seus pais decidem deixar a sua cidade natal, no estado de Minnesota, para viver em San Francisco. Dentro do cérebro de Riley, convivem várias emoções diferentes, como a Alegria, o Medo, a Raiva, o Nojinho e a Tristeza.', '2015', 10, 95, 6, 0, 0),
 (9, 'filme', 'Animacao', 'Toy Story - Um Mundo de Aventu', 'John Lasseter', '\r\nTim Allen, Don Rickles', 'images/a6.jpg', 'O aniversário de Andy está chegando e os brinquedos estão nervosos. Afinal de contas, eles temem que um novo brinquedo possa substituí-los. Liderados por Woody, um caubói que é também o brinquedo predileto de Andy, eles montam uma escuta que lhes permite saber dos presentes ganhos.', '1995', 8, 77, 0, 0, 0),
@@ -67,7 +67,7 @@ INSERT INTO `midia` (`indice`, `tipo`, `genero`, `titulo`, `diretor`, `elenco`, 
 (15, 'serie', 'Aventura', 'Sherlock', ' Steven Moffat, Steven Moffat,', 'Benedict Cumberbatch, Martin Freeman, Amanda Abbington', 'images/a15.jpg', 'O dr. John Watson precisa de um lugar para morar em Londres. Ele é apresentado ao detetive Sherlock Holmes e os dois acabam desenvolvendo uma parceria intrigante, na qual a dupla vagará pela capital inglesa solucionando assassinatos e outros crimes brutais. Tudo isso em pleno século XXI.', '2010', 7, 90, 16, 4, 0),
 (16, 'serie', 'fantasia', 'STRANGER THINGS', 'Matt Duffer, Ross Duffer', 'Winona Ryder, David Harbour, Finn Wolfhard', 'images/a16.jpg', 'Long Island, 1983. Um garoto de 12 anos desaparece misteriosamente. A família e a polícia procuram respostas, mas acabam se deparando com um experimento secreto do governo. Enquanto isso, os amigos do menino iniciam suas próprias investigações, o que os levam a um extraordinário mistério envolvendo forças sobrenaturais e uma garotinha muito, muito estranha.', '2016', 7, 55, 16, 3, 0),
 (17, 'serie', 'terror', 'Supernatural', 'Eric Kripke, McG, Sera Gamble', 'Jared Padalecki, Jensen Ackles, Misha Collins', 'images/a17.jpg', 'Desde que era pequeno, Sam Winchester (Jared Padalecki) tentava escapar do próprio passsado. Após a misteriosa morte de Mary (Samantha Smith), o pai de Sam passou a procurar vingança contra as forças do mal que mataram a esposa, destruindo qualquer ser maligno que cruze o seu caminho.', '2005', 5, 42, 10, 14, 0),
-(18, 'serie', 'drama', 'Grey\s Anatomy', 'Shonda Rhimes, Shonda Rhimes, ', 'Ellen Pompeo, Justin Chambers', 'images/a18.jpg', 'Os médicos do Grey Sloan Memorial Hospital lidam diariamente com casos e consequências de vida ou morte. É um no outro que eles encontram apoio, conforto, amizade e, às vezes, até mais que amizade... Juntos, eles descobrem o quanto a vida profissional e a pessoal podem ser complicadas e se misturarem no meio do caminho.', '2005', 8, 42, 10, 15, 0),
+(18, 'serie', 'drama', 'Greys Anatomy', 'Shonda Rhimes, Shonda Rhimes, ', 'Ellen Pompeo, Justin Chambers', 'images/a18.jpg', 'Os médicos do Grey Sloan Memorial Hospital lidam diariamente com casos e consequências de vida ou morte. É um no outro que eles encontram apoio, conforto, amizade e, às vezes, até mais que amizade... Juntos, eles descobrem o quanto a vida profissional e a pessoal podem ser complicadas e se misturarem no meio do caminho.', '2005', 8, 42, 10, 15, 0),
 (19, 'filme', 'Animacao', 'Operação Big Hero', ' Don Hall, Chris Williams (II)', '\r\nRyan Potter, Scott Adsit', 'images/a19.jpg', 'Cidade de San Fransokyo, Estados Unidos. Hiro Hamada (voz de Ryan Potter) é um garoto prodígio que, aos 13 anos, criou um poderoso robô para participar de lutas clandestinas, onde tenta ganhar um bom dinheiro. ', '2014', 7, 102, 0, 0, 9),
 (20, 'serie', 'comedia', 'friends', ' David Crane, Marta Kauffman', 'Jennifer Aniston, Courteney Cox, Lisa Kudrow', 'images/a20.jpg', 'Seis jovens são unidos por laços familiares, românticos e, principalmente, de amizade, enquanto tentam vingar em Nova York. Rachel é a garota mimada que deixa o noivo no altar para viver com a amiga dos tempos de escola Monica, sistemática e apaixonada pela culinária.', '1994', 5, 22, 10, 10, 0),
 (21, 'filme', 'acao', 'VINGADORES: GUERRA INFINITA', 'Joe Russo, Anthony Russo', 'Robert Downey Jr., Chris Hemsworth, Mark Ruffalo mais', 'images/a21.jpg', 'Thanos (Josh Brolin) enfim chega à Terra, disposto a reunir as Joias do Infinito. Para enfrentá-lo, os Vingadores precisam unir forças com os Guardiões da Galáxia, ao mesmo tempo em que lidam com desavenças entre alguns de seus integrantes.', '2018', 10, 156, 12, 0, 0),
@@ -76,7 +76,9 @@ INSERT INTO `midia` (`indice`, `tipo`, `genero`, `titulo`, `diretor`, `elenco`, 
 (24, 'filme', 'acao', ' Matrix', 'Lana Wachowski, Lilly Wachowsk', ' Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss mais', 'images/a24.jpg', 'Em um futuro próximo, Thomas Anderson (Keanu Reeves), um jovem programador de computador que mora em um cubículo escuro, é atormentado por estranhos pesadelos nos quais encontra-se conectado por cabos e contra sua vontade, em um imenso sistema de computadores do futuro. Em todas essas ocasiões, acorda gritando no exato momento em que os eletrodos estão para penetrar em seu cérebro.', '1999', 10, 135, 16, 0, 0),
 (25, 'filme', 'acao', 'Logan', 'James Mangold', 'Hugh Jackman, Patrick Stewart, Dafne Keen mais', 'images/a25.jpg', 'Em 2029, Logan (Hugh Jackman) ganha a vida como chofer de limousine para cuidar do nonagenário Charles Xavier (Patrick Stewart). Debilitado fisicamente e esgotado emocionalmente, ele é procurado por Gabriela (Elizabeth Rodriguez), uma mexicana que precisa da ajuda do ex-X-Men para defender a pequena Laura Kinney / X-23 (Dafne Keen). Ao mesmo tempo em que se recusa a voltar à ativa, Logan é perseguido pelo mercenário Donald Pierce (Boyd Holbrook), interessado na menina.', '2017', 10, 137, 16, 0, 0),
 (26, 'filme', 'acao', 'O Exterminador do Futuro 2 - O', ' James Cameron', 'Arnold Schwarzenegger, Linda Hamilton, Edward Furlong mais', 'images/a26.jpg', 'Uma criança destinada a ser líder (Edward Furlong) já nasceu, mas infeliz por viver com pais adotivos, pois foi privado da companhia da mãe (Linda Hamilton), que foi considerada louca quando falou de um exterminador vindo do futuro. Neste contexto, um andróide (Arnold Schwarzenegger) vem do futuro, mais exatamente um modelo T-800 igual ao filme original, para proteger o garoto, mas existe um problema: o mais avançado andróide existente no futuro, um modelo T-1000 (Robert Patrick), que feito de \"metal líquido\", não pode ter nenhum dano permanente e pode assumir a forma que desejar, também veio para o passado com a missão de matar o menino.', '1991', 4, 135, 16, 0, 0),
-(27, 'filme', 'acao', 'Star wars - despertar da forÃ§', ' j. j. Abrams', 'Daisy Ridley, John Boyega, Adam Driver mais', 'images/a27.jpg', 'DÃ©cadas apÃ³s a queda de Darth Vader e do ImpÃ©rio, surge uma nova ameaÃ§a: a Primeira Ordem, uma organizaÃ§Ã£o sombria que busca minar o poder da RepÃºblica e que tem Kylo Ren (Adam Driver), o General Hux (Domhnall Gleeson) e o LÃ­der Supremo Snoke (Andy Serkis) como principais expoentes.', '2015', 0, 135, 12, 0, 0);
+(27, 'filme', 'acao', 'Star wars - despertar da forÃ§', ' j. j. Abrams', 'Daisy Ridley, John Boyega, Adam Driver mais', 'images/a27.jpg', 'DÃ©cadas apÃ³s a queda de Darth Vader e do ImpÃ©rio, surge uma nova ameaÃ§a: a Primeira Ordem, uma organizaÃ§Ã£o sombria que busca minar o poder da RepÃºblica e que tem Kylo Ren (Adam Driver), o General Hux (Domhnall Gleeson) e o LÃ­der Supremo Snoke (Andy Serkis) como principais expoentes.', '2015', 0, 135, 12, 0, 0),
+(29, '', '', '', ' ', '', '', '', '', 0, 0, 0, 0, 0),
+(30, 'filme', 'Animacao', '9', ' 9', '9', '9', '9', '9', 0, 9, 9, 9, 9);
 
 -- --------------------------------------------------------
 
@@ -97,7 +99,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`login`, `senha`, `email`, `datanasc`) VALUES
 ('admin', '21232f297a57a5a743894a0e4a801fc3', '0', 0),
-('Danilo', 'e10adc3949ba59abbe56e057f20f883e', 'dan.snascimento@hotmail.com', 1998);
+('Danilo', 'e10adc3949ba59abbe56e057f20f883e', 'dan.snascimento@hotmail.com', 1998),
+('teste', 'e10adc3949ba59abbe56e057f20f883e', 'teste@hotmail.com', 1900);
 
 -- --------------------------------------------------------
 
@@ -106,22 +109,26 @@ INSERT INTO `usuarios` (`login`, `senha`, `email`, `datanasc`) VALUES
 --
 
 CREATE TABLE `visitados` (
-  `login` varchar(10) NOT NULL,
-  `indice` int(4) NOT NULL,
-  `count` int(11) DEFAULT NULL
+  `acesso` varchar(30) NOT NULL,
+  `login` varchar(11) NOT NULL,
+  `indice` int(11) NOT NULL,
+  `count` int(11) NOT NULL,
+  `score` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `visitados`
 --
 
-INSERT INTO `visitados` (`login`, `indice`, `count`) VALUES
-('Jose', 1, NULL),
-('Joao', 2, NULL),
-('Jose', 3, NULL),
-('Jose', 3, NULL),
-('Joao', 4, NULL),
-('Joao', 5, NULL);
+INSERT INTO `visitados` (`acesso`, `login`, `indice`, `count`, `score`) VALUES
+('Danilo-16', 'Danilo', 16, 6, 69),
+('Danilo-4', 'Danilo', 4, 1, 1),
+('Danilo-6', 'Danilo', 6, 1, 1),
+('Danilo-8', 'Danilo', 8, 5, 190),
+('teste-20', 'teste', 20, 4, 17),
+('teste-24', 'teste', 24, 1, 1),
+('teste-4', 'teste', 4, 5, 178),
+('teste-8', 'teste', 8, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -138,6 +145,12 @@ ALTER TABLE `midia`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`login`);
+
+--
+-- Indexes for table `visitados`
+--
+ALTER TABLE `visitados`
+  ADD PRIMARY KEY (`acesso`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -67,27 +67,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </script>
         <!-- start-smoth-scrolling -->
         <!-- flexSlider -->
-                <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
-                <script defer src="js/jquery.flexslider.js"></script>
-                <script type="text/javascript">
-                    $(window).load(function () {
-                    $('.flexslider').flexslider({
-                        animation: "slide",
-                        start: function (slider) {
-                            $('body').removeClass('loading');
-                        }
-                    });
-                    });
-                </script>
-                <!-- //flexSlider -->
+        <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
+        <script defer src="js/jquery.flexslider.js"></script>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    start: function (slider) {
+                        $('body').removeClass('loading');
+                    }
+                });
+            });
+        </script>
+        <!-- //flexSlider -->
     </head>
 
     <body>
         <!-- header -->
         <div class="header">
-           <?php require_once 'BaseSite.php';
-           $head = new BaseSite(); $head->Header();
-           ?>
+            <?php
+            require_once 'BaseSite.php';
+            $head = new BaseSite();
+            $head->Header($_GET["login"]);
+            ?>
         </div>
         <!-- //header -->      
         <script>
@@ -111,8 +113,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                         <nav>
-                             <?php require_once 'BaseSite.php';
-                            $nav = new BaseSite(); $nav->Nav();
+                            <?php
+                            require_once 'BaseSite.php';
+                            $nav = new BaseSite();
+                            $nav->Nav($_GET["login"]);
                             ?>
                         </nav>
                     </div>
@@ -120,8 +124,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
         </div>
         <!-- //nav -->
-       
-       
+
+
         <div class="general_social_icons">
             <nav class="social">
                 <ul>
@@ -132,7 +136,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </ul>
             </nav>
         </div>
-        
+
         <!-- Latest-tv-series -->
         <div class="Latest-tv-series">
             <h4 class="latest-text w3_latest_text w3_home_popular">ANIMAÇÃO</h4>
@@ -140,89 +144,87 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <section class="slider">
                     <div class="flexslider">
                         <ul class="slides">
-                        <?php
-                        require_once("../PHP/Filme.php");
-                        require_once("../PHP/Serie.php");
-                        require_once("../BANCO/dbcontroller.php");
-                        
-                        
-                        
-                        $db = new DBController();                        
-                        $results = $db->selectDB("SELECT * FROM midia");  
-                        
-                        $flag = false; $lista =0;
-                        foreach($results as $midia) {
-                            // ABRE A LISTA
-                            if(!$flag){
-                                echo "  
+                            <?php
+                            require_once("../PHP/Filme.php");
+                            require_once("../PHP/Serie.php");
+                            require_once("../BANCO/dbcontroller.php");
+
+
+
+                            $db = new DBController();
+                            $results = $db->selectDB("SELECT * FROM midia");
+
+                            $flag = false;
+                            $lista = 0;
+                            foreach ($results as $midia) {
+                                // ABRE A LISTA
+                                if (!$flag) {
+                                    echo "  
                                  <li>
                                      <div class=\"agile_tv_series_grid\">";
-                                $flag = true;
-                                $lista++;
-                            }
-                            //MOSTRA O FILME DO GENERO
-                            if(($midia["tipo"] == "filme") && ($midia["genero"] == "Animacao")){
-                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                                $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                                $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                $animacao->cartaz( $_GET["login"]);
-                                $lista++;
-                            }
-                            // FECHA A LISTA A CADA 7 FILMES
-                            if (($lista%7) == 0 ){
-                                echo "
+                                    $flag = true;
+                                    $lista++;
+                                }
+                                //MOSTRA O FILME DO GENERO
+                                if (($midia["tipo"] == "filme") && ($midia["genero"] == "Animacao")) {
+                                    $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                    $animacao->cartaz($_GET["login"]);
+                                    $lista++;
+                                }
+                                // FECHA A LISTA A CADA 7 FILMES
+                                if (($lista % 7) == 0) {
+                                    echo "
                                     </div>
                                </li>";
-                               $flag = false;
+                                    $flag = false;
+                                }
                             }
-                        }                       
-                        ?>
+                            ?>
                         </ul>
                     </div>
                 </section>                
             </div>
         </div>
-         <!-- Latest-tv-series -->
+        <!-- Latest-tv-series -->
         <div class="Latest-tv-series">
             <h4 class="latest-text w3_latest_text w3_home_popular">AÇÃO</h4>
             <div class="container">
                 <section class="slider">
                     <div class="flexslider">
                         <ul class="slides">
-                        <?php                        
-                        $flag = false; $lista =0;
-                        foreach($results as $midia) {
-                            // ABRE A LISTA
-                            if(!$flag){
-                                echo "  
+                            <?php
+                            $flag = false;
+                            $lista = 0;
+                            foreach ($results as $midia) {
+                                // ABRE A LISTA
+                                if (!$flag) {
+                                    echo "  
                                  <li>
                                      <div class=\"agile_tv_series_grid\">";
-                                $flag = true;
-                                $lista++;
-                            }
-                            //MOSTRA O FILME DO GENERO
-                            if(($midia["tipo"] == "filme") and ($midia["genero"] == "acao")){
-                                $acao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                                $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                                $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                $acao->cartaz($_GET["login"]);
-                                $lista++;
-                            }
-                            // FECHA A LISTA A CADA 7 FILMES
-                            if (($lista%7) == 0 ){
-                                echo "
+                                    $flag = true;
+                                    $lista++;
+                                }
+                                //MOSTRA O FILME DO GENERO
+                                if (($midia["tipo"] == "filme") and ( $midia["genero"] == "acao")) {
+                                    $acao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                    $acao->cartaz($_GET["login"]);
+                                    $lista++;
+                                }
+                                // FECHA A LISTA A CADA 7 FILMES
+                                if (($lista % 7) == 0) {
+                                    echo "
                                     </div>
                                </li>";
-                               $flag = false;
+                                    $flag = false;
+                                }
                             }
-                        }                       
-                        ?>
+                            ?>
                         </ul>
                     </div>
                 </section>                
             </div>
         </div>
-        
+
         <!--ENXUGAR ESSA MERDA-->
         <div class="Latest-tv-series">
             <h4 class="latest-text w3_latest_text w3_home_popular">SERIE</h4>
@@ -230,42 +232,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <section class="slider">
                     <div class="flexslider">
                         <ul class="slides">
-                        <?php                       
-                        
-                                           
-                        $flag = false; $lista =0;
-                        foreach($results as $midia) {
-                            // ABRE A LISTA
-                            if(!$flag){
-                                echo "  
+                            <?php
+                            $flag = false;
+                            $lista = 0;
+                            foreach ($results as $midia) {
+                                // ABRE A LISTA
+                                if (!$flag) {
+                                    echo "  
                                  <li>
                                      <div class=\"agile_tv_series_grid\">";
-                                $flag = true;
-                                $lista++;
-                            }
-                            //MOSTRA O FILME DO GENERO
-                            if(($midia["tipo"] == "serie")){
-                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                                $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                                $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                                $animacao->cartaz($_GET["login"]);
-                                $lista++;
-                            }
-                            // FECHA A LISTA A CADA 7 FILMES
-                            if (($lista%7) == 0 ){
-                                echo "
+                                    $flag = true;
+                                    $lista++;
+                                }
+                                //MOSTRA O FILME DO GENERO
+                                if (($midia["tipo"] == "serie")) {
+                                    $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                                    $animacao->cartaz($_GET["login"]);
+                                    $lista++;
+                                }
+                                // FECHA A LISTA A CADA 7 FILMES
+                                if (($lista % 7) == 0) {
+                                    echo "
                                     </div>
                                </li>";
-                               $flag = false;
+                                    $flag = false;
+                                }
                             }
-                        }                       
-                        ?>
+                            ?>
                         </ul>
                     </div>
                 </section>                
             </div>
         </div>
-        
+
         <!-- pop-up-box -->  
         <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
         <!--//pop-up-box -->
@@ -279,7 +278,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <iframe src="https://player.vimeo.com/video/165197924?color=ffffff&title=0&byline=0&portrait=0"></iframe>
         </div>        
         <!-- //Latest-tv-series -->
-       
+
         <!-- general -->
         <div class="general">
             <h4 class="latest-text w3_latest_text">PENSANDO EM VOCÊ</h4>
@@ -293,51 +292,47 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
-                                 <?php
-                                 echo "40 linhas em 2 KKKKKKKKK";
-                                 echo "<br>O CARA É BOM";
-                                 
-                                    foreach($results as $midia) {
-                                        
-                                        if(($midia["tipo"] == "serie")){
-                                            $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                                            $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                                            $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                            $animacao->cartaz($_GET["login"]);                                            
-                                        }
+                                <?php
+                                
+                                foreach ($results as $midia) {
+
+                                    if (($midia["tipo"] == "serie")) {
+                                        $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                        $animacao->cartaz($_GET["login"]);
                                     }
-                                    
-                                   ?>
+                                }
+                                ?>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
-                                <?php
-                                 foreach($results as $midia) {                                      
-                                            $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                                            $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                                            $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                            $animacao->cartaz($_GET["login"]);
-                                    }
-                                    
-                                   ?>
+                            <?php
+                            /* DESTAQUE */
+                            $results = $db->selectDB("SELECT * FROM midia AS m INNER JOIN destaque AS v  ON m.indice = v.indice  ORDER BY `score` DESC");
+                            foreach ($results as $midia) {
+                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                $animacao->cartaz($_GET["login"]);
+                            }
+                            
+                            ?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                             <?php
-                                 foreach($results as $midia) {                                      
-                                            $animacao = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"],
-                                                            $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"],
-                                                            $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                                            $animacao->cartaz($_GET["login"]);
-                                    }
-                               ?>
-                            
+                            <?php                          
+                            /* ASSISTIR NOVAMENTE */
+                            $login = $_GET["login"];
+                            $results = $db->selectDB("SELECT * FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice  WHERE login = '$login' ORDER BY `login` DESC");
+                            foreach ($results as $midia) {
+                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                $animacao->cartaz($_GET["login"]);
+                            }
+                            ?>
+
                         </div>                        
                     </div>
                 </div>
             </div>
         </div>
         <!-- //general -->
-        
+
         <!-- footer -->
         <div class="footer">
             <div class="container">
@@ -359,18 +354,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         <script>
-                    $(document).ready(function () {
-                        $(".dropdown").hover(
-                                function () {
-                                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-                                    $(this).toggleClass('open');
-                                },
-                                function () {
-                                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-                                    $(this).toggleClass('open');
-                                }
-                        );
-                    });
+            $(document).ready(function () {
+                $(".dropdown").hover(
+                        function () {
+                            $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                            $(this).toggleClass('open');
+                        },
+                        function () {
+                            $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                            $(this).toggleClass('open');
+                        }
+                );
+            });
         </script>
         <!-- //Bootstrap Core JavaScript -->
         <!-- here stars scrolling icon -->

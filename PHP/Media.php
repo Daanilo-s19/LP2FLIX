@@ -28,7 +28,7 @@
 
     public function cartaz($login){
        echo "  <div class=\"col-md-2 w3l-movie-gride-agile\">
-                                            <a href=\"ExibirFilme.php?indice={$this->indice}&login=$login\" class=\"hvr-shutter-out-horizontal\"><img src={$this->imagem} title=\"album-name\" class=\"img-responsive\" alt=\" \" />
+                                            <a href=\"ExibirFilme.php?indice={$this->indice}&tipo={$this->tipo}&login=$login\" class=\"hvr-shutter-out-horizontal\"><img src={$this->imagem} title=\"album-name\" class=\"img-responsive\" alt=\" \" />
                                                 <div class=\"w3l-action-icon\"><i class=\"fa fa-play-circle\" aria-hidden=\"true\"></i></div>
                                             </a>
                                             <div class=\"mid-1 agileits_w3layouts_mid_1_home\">
@@ -75,10 +75,8 @@
                                                  <p class=\"fexi_header_para\"><span>Diretor<label>:</label></span>{$this->diretor}</p>
                                                  <p class=\"fexi_header_para\"><span>Elenco<label>:</label> </span>{$this->elenco}</p>
                                                 <p class=\"fexi_header_para fexi_header_para1\"><span>Estrela<label>:</label></span>{$this->avaliacao}
-                                                    <a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a>
-                                                </p>
-                                            </div>
-                                        </div>";
+                                                    <a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a></p>";
+                                           
    }
   
    public function Preferencia($ClickCount){ // RETORNA A PREFERÊNCIA A PARTIR DE QUANTAS VEZES A MIDIA FOI ASSISTIDA POR UM USUÁRIO

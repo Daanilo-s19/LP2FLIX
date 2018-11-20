@@ -69,14 +69,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
         <script defer src="js/jquery.flexslider.js"></script>
         <script type="text/javascript">
-    $(window).load(function () {
-        $('.flexslider').flexslider({
-            animation: "slide",
-            start: function (slider) {
-                $('body').removeClass('loading');
-            }
-        });
-    });
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    start: function (slider) {
+                        $('body').removeClass('loading');
+                    }
+                });
+            });
         </script>
         <!-- //flexSlider -->
 
@@ -88,7 +88,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <?php
             require_once 'BaseSite.php';
             $head = new BaseSite();
-            $head->Header();
+            $head->Header($_GET["login"]);
             ?>
         </div>
         <!-- //header -->      
@@ -116,7 +116,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <?php
                             require_once 'BaseSite.php';
                             $nav = new BaseSite();
-                            $nav->Nav();
+                            $nav->Nav($_GET["login"]);
                             ?>
                         </nav>
                     </div>
@@ -145,43 +145,74 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             require_once("../PHP/Filme.php");
             require_once("../PHP/Serie.php");
             require_once("../BANCO/dbcontroller.php");
-            
-            $db = new DBController();            
+
+            $db = new DBController();
             $login = $_GET["login"];
             $indice = $_GET["indice"];
-            $vistado = $login.'-'.$indice;// GAMBIARRA
+            $tipo = $_GET["tipo"];
+            $acesso = $login . '-' . $indice; // chave unica
             $flag = false;
-            
-            //VERIFICA SE O USUÁRIO JÁ ESTÁ NO BD DE VISITADOS
-            $results = $db->selectDB("SELECT * FROM visitados");                
-            foreach ($results as $midia){
-                if($midia["login"] == $vistado){                    
-                    $count = $midia["count"];
-                    $flag = TRUE;  
-                }
 
+/********************************* EXIBIÇÃO DO FILME ESCOLHIDO *************************************/
+            $results = $db->selectDB("SELECT * FROM midia");
+            if ($tipo == "filme")            // EXIBE O FILME SELECIONADO. REFAZ O OBJ A PARTIR DO INDICE
+                foreach ($results as $midia) {
+                    if ($midia["indice"] == $_GET["indice"]) {
+                        $filmes = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                        $filmes->Exibiçao();
+                        $duracao = $midia["duracao"];
+                        $titulo = $midia["titulo"];
+                    }
+                } else if ($tipo == "serie")
+                foreach ($results as $midia) {
+                    if ($midia["indice"] == $_GET["indice"]) {
+                        $filmes = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                        $filmes->Exibiçao();
+                        $duracao = ($midia["duracao"] / 2);
+                        $titulo = $midia["titulo"];
+                    }
+                }
+/************************ TABELA VISITADOS - SCORE DO FILME POR USUÁRIO ****************************************************************/
+            $results = $db->selectDB("SELECT * FROM visitados"); //VERIFICA SE O USUÁRIO JÁ ESTÁ NO BD DE VISITADOS               
+            foreach ($results as $midia) {
+                if ($midia["acesso"] == $acesso) {
+                    $count = $midia["count"];
+                    $score = $midia["score"];
+                    $flag = TRUE;
+                }
             }
-            // SE NAO, INSIRA-O, SE SIM, ATUALIZE O CONTADOR
-            if(!$flag){
-                $query = "INSERT INTO visitados (login, indice, count) VALUES ('$login-$indice', '$indice', '0')";
-                $db->insertDB($query);                    
-            }else{
+
+            if (!$flag) {// SE NAO, INSIRA-O, SE SIM, ATUALIZE O CONTADOR                
+                $query = "INSERT INTO visitados (acesso, login, indice, count, score) VALUES ('$acesso','$login','$indice','1','1')";
+                $db->insertDB($query);
+            } else {
+                $score = ($count * $duracao) / 2;
                 $count++;
-                $query = "UPDATE visitados SET count = '$count' WHERE login = '$login-$indice'";
+                $query = "UPDATE visitados SET count = '$count', score = '$score' WHERE acesso = '$acesso'";
                 $db->insertDB($query);
             }
-                
-            // EXIBE O FILME SELECIONADO. REFAZ O OBJ A PARTIR DO INDICE
-            $results = $db->selectDB("SELECT * FROM midia");
+
+/*****************************TABELA DESTAQUE - SCORE TOTAL DO FILME ***********************************************/
+            $flag = false;
+            $results = $db->selectDB("SELECT * FROM destaque"); //VERIFICA SE O FILME JÁ ESTÁ NO RANKING               
             foreach ($results as $midia) {
-                if ($midia["indice"] == $_GET["indice"]) {
-                    $filmes = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                    $filmes->Exibiçao();
+                if ($midia["filme"] == $titulo) {
+                    $exibido = $midia["exibido"];
+                    $ranking = $midia["score"];
+                    $flag = TRUE;
                 }
             }
-            
+            if (!$flag) {// SE NAO, INSIRA-O, SE SIM, ATUALIZE O CONTADOR                
+                $query = "INSERT INTO destaque (filme,indice, exibido, score) VALUES ('$titulo','$indice','1','1')";
+                $db->insertDB($query);
+            } else {
+                $ranking = ($exibido * $duracao) / 2;
+                $exibido++;
+                $query = "UPDATE destaque SET exibido = '$exibido', score = '$ranking' WHERE indice = '$indice'";               
+                $db->insertDB($query);
+            }
             ?> 
-            
+
         </div>
 
         <!-- pop-up-box -->  
@@ -198,7 +229,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>        
         <!-- //Latest-tv-series -->
 
-        <!-- general -->
+       <!-- general -->
         <div class="general">
             <h4 class="latest-text w3_latest_text">PENSANDO EM VOCÊ</h4>
             <div class="container">
@@ -212,9 +243,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
                                 <?php
-                                echo "40 linhas em 2 KKKKKKKKK";
-                                echo "<br>O CARA É BOM";
-                                require_once("../PHP/Filme.php");
+                                
                                 foreach ($results as $midia) {
 
                                     if (($midia["tipo"] == "serie")) {
@@ -226,19 +255,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
-<?php
-require_once("../PHP/Filme.php");
-foreach ($results as $midia) {
-    $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-    $animacao->cartaz($_GET["login"]);
-}
-?>
+                            <?php
+                            /* DESTAQUE */
+                            $results = $db->selectDB("SELECT * FROM midia AS m INNER JOIN destaque AS v  ON m.indice = v.indice  ORDER BY `score` DESC");
+                            foreach ($results as $midia) {
+                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                                $animacao->cartaz($_GET["login"]);
+                            }
+                            
+                            ?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                            <?php
-                            require_once("../PHP/Serie.php");
+                            <?php                          
+                            /* ASSISTIR NOVAMENTE */
+                            $login = $_GET["login"];
+                            $results = $db->selectDB("SELECT * FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice  WHERE login = '$login' ORDER BY `login` DESC");
                             foreach ($results as $midia) {
-                                $animacao = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                                $animacao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
                                 $animacao->cartaz($_GET["login"]);
                             }
                             ?>
