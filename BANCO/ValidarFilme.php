@@ -11,43 +11,20 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once("dbcontroller.php");
+        require_once("../PHP/GM.php");
+        require_once ("../PHP/Filme.php");
+        require_once ("../PHP/serie.php");
 
-        $db = new DBController();
-        
-        $results = $db->selectDB("SELECT * FROM midia");
-        $indice = 1;
-         foreach ($results as $midia){
-             if($indice <= $midia["indice"])
-                 $indice++;
-             
-         }
-         $indice++;
-        
-        $tipo = $_POST["tipo"];
-        $genero = $_POST["genero"];
-        $titulo = $_POST["titulo"];
-        $diretor = $_POST["diretor"];
-        $elenco = $_POST["elenco"];
-        $imagem = $_POST["imagem"];
-        $sinopse = $_POST["sinopse"];
-        $ano = $_POST["ano"];
-        $avaliacao = $_POST["avaliacao"];
-        $duracao = $_POST["duracao"];
-        $classificacao = $_POST["classificacao"];
+
+        $GM = new GM();
         $temporada = $_POST["temporada"];
-        $bilheteria = $_POST["bilheteria"];
         
-       
-         
-        
-
-        $query = "INSERT INTO midia (indice, tipo, genero, titulo, diretor, elenco, imagem, sinopse, ano, avaliacao, duracao, classificacao, temporada, bilheteria) VALUES ('$indice', '$tipo', '$genero','$titulo',' $diretor','$elenco','$imagem','$sinopse','$ano','$avaliacao','$duracao',' $classificacao','$temporada','$bilheteria')";
-        if ($db->insertDB($query) == true) {
-            setcookie("login", $login);
-            header("Location:../CadastrarMidia.php?sucesso=1");
+        if ($temporada != NULL) {
+            $serie = new Serie(0, $_POST["tipo"], $_POST["genero"], $_POST["titulo"], $_POST["diretor"], $_POST["elenco"], $_POST["imagem"], $_POST["sinopse"], $_POST["ano"], $_POST["avaliacao"], $_POST["duracao"], $_POST["classificacao"], $_POST["temporada"]);
+            $GM->InserirMidia($serie);
         } else {
-            header("Location:../CadastrarMidia.php?sucesso=0");
+            $filme = new Filme(0, $_POST["tipo"], $_POST["genero"], $_POST["titulo"], $_POST["diretor"], $_POST["elenco"], $_POST["imagem"], $_POST["sinopse"], $_POST["ano"], $_POST["avaliacao"], $_POST["duracao"], $_POST["classificacao"], $_POST["bilheteria"]);
+            $GM->InserirMidia($filme);
         }
         ?>
     </body>

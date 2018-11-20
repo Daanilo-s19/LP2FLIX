@@ -11,25 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once("dbcontroller.php");
-        
-         $db = new DBController();
-        
-        $login = $_POST["login"];
-        $senha = md5($_POST["senha"]); // HASHING VAGABUNDO
-        $email = $_POST["email"];
-        $datanasc = $_POST["datanasc"];
-        
-        $query = "DELETE FROM usuarios WHERE login = '$login' ";
-	if ($db->deleteDB($query)== true){
-            setcookie("login", $login);
-            header("Location:../RetirarUsuario.php?sucesso=1");
-        }
-        else{
-            header("Location:../RetirarUsuario.php?sucesso=0");
-            
-        }
-	
+        require_once("../PHP/GM.php");
+        $GM = new GM();
+        $GM->RetirarUser($_POST["login"]);        
         ?>
     </body>
 </html>

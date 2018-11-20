@@ -59,7 +59,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="w3ls-login box box--big">
 
                 <div class="w3ls-bot">
-                    <form action="entretenimento/SiteIndex.php" method="post">
+                    <form action="entretenimento/SiteIndex.php?login=Admin" method="post">
                         <input type="submit" value="ENTRAR NO BACANAFLIX">  
                     </form>
                 </div>

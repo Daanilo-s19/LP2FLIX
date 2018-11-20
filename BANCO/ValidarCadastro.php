@@ -11,25 +11,13 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once("dbcontroller.php");
+        require_once("../PHP/GM.php");
         
-         $db = new DBController();
-        
-        $login = $_POST["login"];
-        $senha = md5($_POST["senha"]); // HASHING VAGABUNDO
-        $email = $_POST["email"];
-        $datanasc = $_POST["datanasc"];
-        
-        $query = "INSERT INTO usuarios (login, senha, email,datanasc) VALUES ('$login', '$senha', '$email','$datanasc')";
-	if ($db->insertDB($query)== true){
-            setcookie("login", $login);
-            header("Location:../Cadastro.php?sucesso=1");
-        }
-        else{
-            header("Location:../Cadastro.php?sucesso=0");
-            
-        }
-	
+        $GM = new GM();
+        $user = new Usuario($_POST["login"], md5($_POST["senha"]));
+        $user->setEmail($_POST["email"]);
+        $user->setNasc( $_POST["datanasc"]);
+        $GM->InserirUser($user);
         ?>
     </body>
 </html>

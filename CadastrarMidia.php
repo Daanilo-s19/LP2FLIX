@@ -92,7 +92,7 @@ echo "
                     <input type=\"number\" name=\"ano\" placeholder=\"ANO DO FILME\"required=\"\" />			
                 </div> 
                 <div class=\"agile-field-txt\">                           
-                    <input type=\"number\" name=\"avalicao\" placeholder=\"AVALIACAO DO FILME\"required=\"\" />			
+                    <input type=\"number\" name=\"avaliacao\" placeholder=\"AVALIACAO DO FILME\"required=\"\" />			
                 </div> 
                 <div class=\"agile-field-txt\">                           
                     <input type=\"number\" name=\"duracao\" placeholder=\"DURACAO DO FILME\"required=\"\" />			

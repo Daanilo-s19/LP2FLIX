@@ -17,5 +17,15 @@ class Serie extends Media {
                    </div>";
     }
     
+    function getTemporada() {
+        return $this->temporada;
+    }
+
+    function setTemporada($temporada) {
+        $this->temporada = $temporada;
+    }
+
+
+    
 }
 ?>

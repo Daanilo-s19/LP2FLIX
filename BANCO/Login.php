@@ -11,31 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once("dbcontroller.php");
-
-        $login = $_POST['login'];
-        $senha = md5($_POST['senha']); /*md5 transforma a string em um hash de 32 caractere */        
-        $db = new DBController();
-
-        $query = "SELECT  * FROM usuarios";
-        $results = $db->selectDB($query);
-
-        $flag = false;
-        foreach ($results as $usuario) {
-            if($login == "admin" && $senha == md5("admin")){
-               header("Location:../IndexMASTER.php");
-               $flag = true;
-               
-            }
-            
-            else if ($login == $usuario["login"] && $senha == $usuario["senha"]) {
-                setcookie("login", $login);
-                header("Location:../entretenimento/SiteIndex.php?login={$usuario["login"]}");
-                $flag = true;               
-            }
-        }
-        if(!$flag)
-            header("Location:../index.php?err=true");
+        require_once("../PHP/GM.php");
+        $user = new Usuario($_POST["login"], $_POST["senha"]);
+        $user->Acesso();
         
         ?>
     </body>

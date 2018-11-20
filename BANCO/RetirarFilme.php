@@ -11,22 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once("dbcontroller.php");
-        
-        $titulo = $_GET["titulo"];
-       
-         $db = new DBController();
-        
-        $query = "DELETE FROM midia WHERE titulo = '$titulo' ";
-	if ($db->deleteDB($query)== true){
-            //setcookie("login", $login);
-            header("Location:../RetirarMidia.php?sucesso=1");
-        }
-        else{
-            header("Location:../RetirarMidia.php?sucesso=0");
-            
-        }
-	
+        require_once("../PHP/GM.php");
+        $GM = new GM();
+        $GM->RetirarFilme($_GET["titulo"]);   
         ?>
     </body>
 </html>
