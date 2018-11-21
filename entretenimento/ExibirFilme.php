@@ -161,8 +161,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
             if ($procurar != NULL) {
-                $video = new Filme(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-                $video->procurar($procurar);
+                
+                $usuario->ProcurarMidia($procurar);
             } else {
                 if ($_GET["tipo"] == "FILME") { /*                 * ****************************** EXIBIÇÃO DO FILME ESCOLHIDO ************************************ */
                     $exibir = new Filme($_GET["indice"], $_GET["tipo"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);

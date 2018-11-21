@@ -48,9 +48,7 @@ abstract class Media {
                                                     <div class=\"clearfix\"></div>
                                                 </div>
                                             </div>
-                                            <div class=\"ribben\">
-                                                <p>NOVO</p>
-                                            </div>
+                                            
                                         </div>";
     }
 
@@ -105,21 +103,6 @@ abstract class Media {
         }
     }
 
-    public function procurar($procurar) {
-        $results = $this->db->selectDB("SELECT * FROM midia WHERE titulo ='$procurar'");
-        if ($results != NULL) {
-            foreach ($results as $midia) {
-                if ($midia["tipo"] == "FILME") {
-                    $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                    $video->Exibiçao($video);
-                } else {
-                    $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                    $video->Exibiçao($video);
-                }
-            }
-        } else
-            echo "<h4 class=\"latest-text w3_latest_text\">FILME NÃO ENCONTRADO</h4>";
-    }
     public function __destruct() {
         $this->db->closeDB();
     }
