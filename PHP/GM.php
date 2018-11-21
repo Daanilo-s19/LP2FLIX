@@ -169,11 +169,11 @@ class Usuario {
     }
 
     public function MostraRecomendados(){
-        $generoDestaque = $this->db->selectDB("SELECT genero,indice FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice WHERE login = '$this->login'  ORDER BY `score` DESC LIMIT 5");
+        $generoDestaque = $this->db->selectDB("SELECT * FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice WHERE login = '$this->login'  ORDER BY `score` DESC LIMIT 5");
         if(!empty($generoDestaque)){
             $assistidos = [];
-            foreach($generoDestaque as $midia){
-                $assistidos[] = $midia["indice"];
+            foreach($generoDestaque as $m_midia){
+                $assistidos[] = $m_midia["indice"];
             }
             $excluir = "";
             foreach($assistidos as $item){
