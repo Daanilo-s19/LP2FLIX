@@ -6,8 +6,8 @@ class BaseSite {
                     <a href=\"SiteIndex.php?login=$login\" ><h1>BACANA<span>FLIX</span></h1></a>
                 </div>
                 <div class=\"w3_search\">
-                    <form action=\"#\" method=\"post\">
-                        <input type=\"text\" name=\"Search\" placeholder=\"Search\" required=\"\">
+                    <form action=\"ExibirFilme.php?indice=SEARCH&tipo=X&login=$login&duracao=10\" method=\"POST\">
+                        <input type=\"text\" name=\"procurar\" placeholder=\"PROCURAR FILME\" required=\"\">
                         <input type=\"submit\" value=\"Go\">
                     </form>
                 </div>
