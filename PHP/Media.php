@@ -78,45 +78,6 @@ abstract class Media {
                                                     <a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a></p>";
     }
 
-    public function recomendado() {
-$results = $this->db->selectDB("SELECT * FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice WHERE login = 'Admin'  ORDER BY `score` DESC LIMIT 5");
-foreach ($results as $midia) {
-    if ($midia["tipo"] == "FILME") {
-        $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-        $video->cartaz($_GET["login"]);
-    } else {
-        $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-        $video->cartaz($_GET["login"]);
-    }
-}
-    }
-
-    public function destaque() {
-        $results = $this->db->selectDB("SELECT * FROM midia AS m INNER JOIN destaque AS v  ON m.indice = v.indice  ORDER BY `score` DESC");
-        foreach ($results as $midia) {
-            if ($midia["tipo"] == "FILME") {
-                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                $video->cartaz($_GET["login"]);
-            } else {
-                $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                $video->cartaz($_GET["login"]);
-            }
-        }
-    }
-
-    public function visitados($login) {
-        $results = $this->db->selectDB("SELECT * FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice  WHERE login = '$login' ORDER BY `login` DESC");
-        foreach ($results as $midia) {
-            if ($midia["tipo"] == "FILME") {
-                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                $video->cartaz($_GET["login"]);
-            } else {
-                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                $video->cartaz($_GET["login"]);
-            }
-        }
-    }
-
     public function corousel($login) {
         $lista = 0;
         $flag = false;

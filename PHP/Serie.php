@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Media.php';
+require_once("Media.php");
 
 class Serie extends Media {
 

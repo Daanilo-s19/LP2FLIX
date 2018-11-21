@@ -14,7 +14,8 @@ and open the template in the editor.
         require_once("../PHP/GM.php");
         
         $GM = new GM();
-        $user = new Usuario($_POST["login"], md5($_POST["senha"]));
+        $user = new Usuario($_POST["login"]);
+        $user->setSenha($_POST["senha"]);
         $user->setEmail($_POST["email"]);
         $user->setNasc( $_POST["datanasc"]);
         $GM->InserirUser($user);

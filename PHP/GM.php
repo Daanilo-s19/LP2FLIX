@@ -1,7 +1,7 @@
 <?php
-require_once 'media.php';
-require_once "filme.php";
-require_once "serie.php";
+require_once("Media.php");
+require_once("Filme.php");
+require_once("Serie.php");
 require_once("../BANCO/dbcontroller.php");
 
 class GM {
@@ -12,6 +12,9 @@ class GM {
         $this->db = new DBController();
     }
 
+    public function __destruct() {
+        $this->db->closeDB();
+    }
     public function RetirarUser($login) {
         if ($this->db->deleteDB("DELETE FROM usuarios WHERE login = '$login' ") == true) {
             setcookie("login", $login);
@@ -74,14 +77,11 @@ class GM {
     }
 
     public function InserirUser($usuario) {
-        $this->ValidaUsuario($usuario);
-    }
-
-    private function ValidaUsuario($usuario) {
         $login = $usuario->GetLogin();
         $senha = $usuario->GetSenha();
         $email = $usuario->GetEmail();
         $datanasc = $usuario->GetNasc();
+        var_dump($usuario);
         $query = "INSERT INTO usuarios (login, senha, email,datanasc) VALUES ('$login', '$senha', '$email','$datanasc')";
         if ($this->db->insertDB($query) == true) {
             setcookie("login", $login);
@@ -127,10 +127,6 @@ class GM {
         }
          
     }
-    public function __destruct() {
-        $this->db->closeDB();
-    }
-
     public function GetDB() {
         return $this->db;
     }
@@ -144,14 +140,17 @@ class Usuario {
 
     protected $db, $login, $senha, $email, $datanasc;
 
-    public function __construct($login,$senha) {
+    public function __construct($login) {
         $this->db = new DBController();
         $this->login = $login;
-        $this->senha = md5($senha);
         
     }
+    public function __destruct() {
+        $this->db->closeDB();
+    }
 
-    public function Acesso() {
+    public function Acesso($senha) {
+        $this->setSenha($senha);
         if ($this->login == "admin" and $this->senha == md5("admin"))
             header("Location:../IndexMASTER.php");
         else {
@@ -167,7 +166,72 @@ class Usuario {
             } else
                 header("Location:../index.php?err=true");
         }
-         $this->db->closeDB();
+    }
+
+    public function MostraRecomendados(){
+        $generoDestaque = $this->db->selectDB("SELECT genero,indice FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice WHERE login = '$this->login'  ORDER BY `score` DESC LIMIT 5");
+        if(!empty($generoDestaque)){
+            $assistidos = [];
+            foreach($generoDestaque as $midia){
+                $assistidos[] = $midia["indice"];
+            }
+            $query = "";
+            foreach($generoDestaque as $m_midia){
+                $genero = $m_midia["genero"];
+                $query = "SELECT * FROM midia as m INNER JOIN destaque as d ON m.indice = d.indice WHERE (m.genero = '$genero'";
+                foreach($assistidos as $item){
+                    $query = $query . " AND m.indice != '$item'";
+                }
+                $query = $query . ") ORDER BY d.score DESC LIMIT 2";
+                $results = $this->db->selectDB($query);
+                if(empty($results)){
+                    $query = "SELECT * FROM midia " . strstr($query, "WHERE");
+                    $query = strstr($query, "ORDER", true) . "LIMIT 2";
+                    $results = $this->db->selectDB($query);
+                }
+                foreach ($results as $midia) {
+                    if ($midia["tipo"] == "FILME") {
+                        $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                        $video->cartaz($this->login);
+                    } else {
+                        $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                        $video->cartaz($this->login);
+                    }
+                }
+            }
+        }
+        else
+            $this->MostraDestaque();
+    }
+
+    public function MostraDestaque(){
+        $results = $this->db->selectDB("SELECT * FROM midia AS m INNER JOIN destaque AS v  ON m.indice = v.indice  ORDER BY `score` DESC");
+        foreach ($results as $midia) {
+            if ($midia["tipo"] == "FILME") {
+                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                $video->cartaz($_GET["login"]);
+            } else {
+                $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                $video->cartaz($_GET["login"]);
+            }
+        }
+    }
+
+    public function MostraVisitados(){
+        $results = $this->db->selectDB("SELECT * FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice  WHERE login = '$this->login' ORDER BY `login` DESC");
+        foreach ($results as $midia) {
+            if ($midia["tipo"] == "FILME") {
+                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                $video->cartaz($this->login);
+            } else {
+                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                $video->cartaz($this->login);
+            }
+        }
+    }
+
+    public function setSenha($senha){
+        $this->senha = md5($senha);
     }
 
     public function setEmail($email) {

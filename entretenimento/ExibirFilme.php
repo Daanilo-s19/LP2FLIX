@@ -89,7 +89,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- header -->
         <div class="header">
             <?php
-            require_once 'BaseSite.php';
+            require_once("BaseSite.php");
             $head = new BaseSite();
             $head->Header($_GET["login"]);
             ?>
@@ -117,7 +117,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                         <nav>
                             <?php
-                            require_once 'BaseSite.php';
+                            require_once("BaseSite.php");
                             $nav = new BaseSite();
                             $nav->Nav($_GET["login"]);
                             ?>

@@ -12,8 +12,8 @@ and open the template in the editor.
     <body>
         <?php
         require_once("../PHP/GM.php");
-        $user = new Usuario($_POST["login"], $_POST["senha"]);
-        $user->Acesso();
+        $user = new Usuario($_POST["login"]);
+        $user->Acesso($_POST["senha"]);
         
         ?>
     </body>
