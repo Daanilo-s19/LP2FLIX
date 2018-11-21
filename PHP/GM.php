@@ -172,8 +172,8 @@ class Usuario {
         $generoDestaque = $this->db->selectDB("SELECT * FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice WHERE login = '$this->login'  ORDER BY `score` DESC LIMIT 5");
         if(!empty($generoDestaque)){
             $assistidos = [];
-            foreach($generoDestaque as $m_midia){
-                $assistidos[] = $m_midia["indice"];
+            foreach($generoDestaque as $midia){
+                $assistidos[] = $midia["indice"];
             }
             $excluir = "";
             foreach($assistidos as $item){
@@ -191,11 +191,13 @@ class Usuario {
                     $results = $this->db->selectDB($query);
                 }
                 foreach ($results as $midia) {
+                    $indice = $midia["indice"];
+                    $excluir = $excluir . " AND m.indice != '$indice'";
                     if ($midia["tipo"] == "FILME") {
-                        $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                        $video = new Filme($indice, $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
                         $video->cartaz($this->login);
                     } else {
-                        $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                        $video = new Filme($indice, $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
                         $video->cartaz($this->login);
                     }
                 }
