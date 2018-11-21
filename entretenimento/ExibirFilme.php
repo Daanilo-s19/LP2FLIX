@@ -89,9 +89,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- header -->
         <div class="header">
             <?php
+            require_once("../PHP/GM.php");
             require_once("BaseSite.php");
-            $head = new BaseSite();
-            $head->Header($_GET["login"]);
+            $head = new BaseSite();$head->Header($_GET["login"]);
+            $usuario = new Usuario($_GET["login"]);
             ?>
         </div>
         <!-- //header -->      
@@ -205,17 +206,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
-                            <?php
-                            $video = new Filme(NULL, "SERIE", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-                            $video->recomendado() /* recomendado */
-                            ?>
+                                <?php $usuario->MostraRecomendados();/* RECOMENDADO*/ ?>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
-                            <?php $video->destaque(); /* DESTAQUE */ ?>
+                            <?php $usuario->MostraDestaque(); /* DESTAQUE*/ ?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                            <?php $video->visitados($login); /* ASSISTIR NOVAMENTE */ ?>
+                            <?php $usuario->MostraVisitados();/* ASSISTIR NOVAMENTE */?>
 
                         </div>                        
                     </div>
