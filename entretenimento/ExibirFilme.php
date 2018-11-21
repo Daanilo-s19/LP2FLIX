@@ -153,35 +153,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $db = new DBController();
             $GM = new GM();
             $login = $_GET["login"];
-            $indice = $_GET["indice"];
-            $tipo = $_GET["tipo"];
-            $acesso = $login . '-' . $indice; // chave unica
-            $flag = false;
+            $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : NULL;
+            $acesso = $_GET["login"]. '-' .$_GET["indice"]; // chave unica
+           
 
-            /*             * ******************************* EXIBIÇÃO DO FILME ESCOLHIDO ************************************ */
-            $results = $db->selectDB("SELECT * FROM midia");
-            if ($tipo == "FILME")            // EXIBE O FILME SELECIONADO. REFAZ O OBJ A PARTIR DO INDICE
-                foreach ($results as $midia) {
-                    if ($midia["indice"] == $_GET["indice"]) {
-                        $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                        $video->Exibiçao();
-                        $duracao = $midia["duracao"];
-                        $titulo = $midia["titulo"];
-                    }
-                } else if ($tipo == "SERIE")
-                foreach ($results as $midia) {
-                    if ($midia["indice"] == $_GET["indice"]) {
-                        $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                        $video->Exibiçao();
-                        $duracao = ($midia["duracao"] / 2);
-                        $titulo = $midia["titulo"];
-                    }
+            if ($procurar != NULL) {
+                $video = new Filme(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                $video->procurar($procurar);
+                
+            } else {
+                if ($_GET["tipo"] == "FILME") { /******************************** EXIBIÇÃO DO FILME ESCOLHIDO ************************************ */
+                    $exibir = new Filme($_GET["indice"],$_GET["tipo"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                    $exibir->Exibiçao($exibir);
+                   
+                } else {
+                    $exibir = new Serie($_GET["indice"],$_GET["tipo"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                    $exibir->Exibiçao($exibir);
                 }
-            /*             * ********************** TABELA VISITADOS - SCORE DO FILME POR USUÁRIO *************************************************************** */
-            @$GM->ScoreUser($acesso, $login, $indice, $duracao);
-
-            /*             * ***************************TABELA DESTAQUE - SCORE TOTAL DO FILME ********************************************** */
-            @$GM->RankingFilme($titulo, $indice, $duracao);
+            }      
+          
+            @$GM->ScoreUser($acesso,  $_GET["login"], $_GET["indice"], $_GET["duracao"]);    /******************** TABELA VISITADOS - SCORE DO FILME POR USUÁRIO ************************************** */
+            @$GM->RankingFilme($_GET["titulo"], $_GET["indice"], $_GET["duracao"]); /****************************TABELA DESTAQUE - SCORE TOTAL DO FILME ********************************************** */
             ?> 
 
         </div>
@@ -213,14 +205,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
-                                <?php $video->recomendado() /* recomendado */ ?>
+<?php
+$video = new Filme(NULL, "SERIE", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+$video->recomendado() /* recomendado */
+?>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
-                            <?php $video->destaque(); /* DESTAQUE */ ?>
+<?php $video->destaque(); /* DESTAQUE */ ?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                            <?php $video->visitados($login); /* ASSISTIR NOVAMENTE */ ?>
+<?php $video->visitados($login); /* ASSISTIR NOVAMENTE */ ?>
 
                         </div>                        
                     </div>
