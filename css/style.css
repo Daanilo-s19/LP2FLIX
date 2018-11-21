@@ -323,6 +323,7 @@ h4 {
 }
 
 .w3ls-login input[type="number"],
+.w3ls-login option,
 .w3ls-login input[type="email"],
 .w3ls-login input[type="text"],
 .w3ls-login input[type="password"] {
@@ -360,7 +361,8 @@ label.check {
     -webkit-flex-basis: 100%;
 }
 
-.w3ls-login input[type=submit] {
+.w3ls-login input[type=submit],
+.w3ls-login select{
     width: 100%;
     padding: 0.5em 0;
     font-size: 1.1em;

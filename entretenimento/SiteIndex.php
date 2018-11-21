@@ -149,32 +149,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             require_once("../PHP/Serie.php");
                             require_once("../BANCO/dbcontroller.php");
                             
-                            $db = new DBController();
-                            $results = $db->selectDB("SELECT * FROM midia");                          
-
-                            $flag = false;
-                            $lista = 0;
-                            foreach ($results as $midia) {
-                                // ABRE A LISTA
-                                if (!$flag) {
-                                    echo "<li>
-                                    <div class=\"agile_tv_series_grid\">";
-                                    $flag = true;
-                                    $lista++;
-                                }
-                                //MOSTRA O FILME DO GENERO
-                                if (($midia["tipo"] == "FILME") && ($midia["genero"] == "ANIMACAO")) {
-                                    $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                    $video->cartaz($_GET["login"]);
-                                    $lista++;
-                                }
-                                // FECHA A LISTA A CADA 7 FILMES
-                                if (($lista % 7) == 0) {
-                                    echo "</div>
-                                    </li>";
-                                    $flag = false;
-                                }
-                            }
+                            $animacao = new Filme(NULL, 'FILME', 'ANIMACAO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                            $animacao->corousel($_GET["login"]);
+                            
                             ?>
                         </ul>
                     </div>
@@ -189,31 +166,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="flexslider">
                         <ul class="slides">
                             <?php
-                            $flag = false;
-                            $lista = 0;
-                            foreach ($results as $midia) {
-                                // ABRE A LISTA
-                                if (!$flag) {
-                                    echo "  
-                                 <li>
-                                     <div class=\"agile_tv_series_grid\">";
-                                    $flag = true;
-                                    $lista++;
-                                }
-                                //MOSTRA O FILME DO GENERO
-                                if (($midia["tipo"] == "FILME") and ( $midia["genero"] == "ACAO")) {
-                                    $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                    $video->cartaz($_GET["login"]);
-                                    $lista++;
-                                }
-                                // FECHA A LISTA A CADA 7 FILMES
-                                if (($lista % 7) == 0) {
-                                    echo "
-                                    </div>
-                               </li>";
-                                    $flag = false;
-                                }
-                            }
+                            $acao = new Filme(NULL, 'FILME', 'ACAO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                            $acao->corousel($_GET["login"]);
                             ?>
                         </ul>
                     </div>
@@ -228,31 +182,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="flexslider">
                         <ul class="slides">
                             <?php
-                            $flag = false;
-                            $lista = 0;
-                            foreach ($results as $midia) {
-                                // ABRE A LISTA
-                                if (!$flag) {
-                                    echo "  
-                                 <li>
-                                     <div class=\"agile_tv_series_grid\">";
-                                    $flag = true;
-                                    $lista++;
-                                }
-                                //MOSTRA O FILME DO GENERO
-                                if (($midia["tipo"] == "FILME") and ( $midia["genero"] == "AVENTURA")) {
-                                    $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                    $video->cartaz($_GET["login"]);
-                                    $lista++;
-                                }
-                                // FECHA A LISTA A CADA 7 FILMES
-                                if (($lista % 7) == 0) {
-                                    echo "
-                                    </div>
-                               </li>";
-                                    $flag = false;
-                                }
-                            }
+                            $aventura = new Filme(NULL, 'FILME', 'AVENTURA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                            $aventura->corousel($_GET["login"]);
                             ?>
                         </ul>
                     </div>
@@ -266,32 +197,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <section class="slider">
                     <div class="flexslider">
                         <ul class="slides">
-                            <?php
-                            $flag = false;
-                            $lista = 0;
-                            foreach ($results as $midia) {
-                                // ABRE A LISTA
-                                if (!$flag) {
-                                    echo "  
-                                 <li>
-                                     <div class=\"agile_tv_series_grid\">";
-                                    $flag = true;
-                                    $lista++;
-                                }
-                                //MOSTRA O FILME DO GENERO
-                                if (($midia["tipo"] == "FILME") and ( $midia["genero"] == "DRAMA")) {
-                                    $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                    $video->cartaz($_GET["login"]);
-                                    $lista++;
-                                }
-                                // FECHA A LISTA A CADA 7 FILMES
-                                if (($lista % 7) == 0) {
-                                    echo "
-                                    </div>
-                               </li>";
-                                    $flag = false;
-                                }
-                            }
+                             <?php
+                            $drama = new Filme(NULL, 'FILME', 'DRAMA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                            $drama->corousel($_GET["login"]);
                             ?>
                         </ul>
                     </div>
@@ -305,32 +213,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <section class="slider">
                     <div class="flexslider">
                         <ul class="slides">
-                            <?php
-                            $flag = false;
-                            $lista = 0;
-                            foreach ($results as $midia) {
-                                // ABRE A LISTA
-                                if (!$flag) {
-                                    echo "  
-                                 <li>
-                                     <div class=\"agile_tv_series_grid\">";
-                                    $flag = true;
-                                    $lista++;
-                                }
-                                //MOSTRA O FILME DO GENERO
-                                if (($midia["tipo"] == "FILME") and ( $midia["genero"] == "TERROR")) {
-                                    $acao = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                                    $acao->cartaz($_GET["login"]);
-                                    $lista++;
-                                }
-                                // FECHA A LISTA A CADA 7 FILMES
-                                if (($lista % 7) == 0) {
-                                    echo "
-                                    </div>
-                               </li>";
-                                    $flag = false;
-                                }
-                            }
+                             <?php
+                            $terror = new Filme(NULL, 'FILME', 'TERROR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                            $terror->corousel($_GET["login"]);
                             ?>
                         </ul>
                     </div>
@@ -346,31 +231,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="flexslider">
                         <ul class="slides">
                             <?php
-                            $flag = false;
-                            $lista = 0;
-                            foreach ($results as $midia) {
-                                // ABRE A LISTA
-                                if (!$flag) {
-                                    echo "  
-                                 <li>
-                                     <div class=\"agile_tv_series_grid\">";
-                                    $flag = true;
-                                    $lista++;
-                                }
-                                //MOSTRA O FILME DO GENERO
-                                if (($midia["tipo"] == "SERIE")) {
-                                    $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                                    $video->cartaz($_GET["login"]);
-                                    $lista++;
-                                }
-                                // FECHA A LISTA A CADA 7 FILMES
-                                if (($lista % 7) == 0) {
-                                    echo "
-                                    </div>
-                               </li>";
-                                    $flag = false;
-                                }
-                            }
+                            $serie = new Serie(NULL, 'SERIE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
+                            $serie->corousel($_GET["login"]);
                             ?>
                         </ul>
                     </div>

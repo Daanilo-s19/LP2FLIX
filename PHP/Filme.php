@@ -19,6 +19,7 @@ class Filme extends Media {
                 </div>
                    </div>";
     }
+    
     function getBilheteria() {
         return $this->bilheteria;
     }

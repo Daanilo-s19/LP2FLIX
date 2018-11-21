@@ -60,7 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         
         <div class="w3ls-login box box--big">
             <!-- form starts here -->
-            <form action="BANCO/ValidarCadastro.php?" method="POST">
+            <form action="BANCO/InserirCadastro.php?" method="POST">
                 <div class="agile-field-txt">                            
                     <input type="text" name="login" placeholder="NOME DE LOGIN" required=""/>
                 </div>

@@ -17,9 +17,9 @@ and open the template in the editor.
 
 
         $GM = new GM();
-        $temporada = $_POST["temporada"];
+        $tipo = $_POST["tipo"];
         
-        if ($temporada != NULL) {
+        if ($tipo == "SERIE") {
             $serie = new Serie(0, $_POST["tipo"], $_POST["genero"], $_POST["titulo"], $_POST["diretor"], $_POST["elenco"], $_POST["imagem"], $_POST["sinopse"], $_POST["ano"], $_POST["avaliacao"], $_POST["duracao"], $_POST["classificacao"], $_POST["temporada"]);
             $GM->InserirMidia($serie);
         } else {

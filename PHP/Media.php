@@ -1,7 +1,8 @@
 <?php
+
 require_once("../BANCO/dbcontroller.php");
 
-abstract class Media{
+abstract class Media {
 
     protected $indice, $tipo, $genero, $titulo, $diretor, $elenco, $imagem, $sinopse, $ano, $avaliacao, $duracao, $classificacao; // atributos
     protected $db;
@@ -115,8 +116,37 @@ abstract class Media{
             }
         }
     }
-  
-    
+
+    public function corousel($login) {
+        $flag = false;
+        $lista = 0;
+        $results = $this->db->selectDB("SELECT * FROM midia");
+        foreach ($results as $midia) {
+            if (!$flag) {// ABRE A LISTA
+                echo "<li> <div class=\"agile_tv_series_grid\">";
+                $flag = true;
+                $lista++;
+            }
+            
+            if ($midia["tipo"] == "FILME" && $midia["genero"] == $this->getGenero()) {//MOSTRA O FILME DO GENERO
+                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                $video->cartaz($login);
+                $lista++;
+            }
+            if($midia["tipo"] == "SERIE"  && $this->getGenero() == NULL){
+                $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                $video->cartaz($login);
+                $lista++;
+            }
+            
+                
+            if (($lista % 7) == 0) {// FECHA A LISTA A CADA 7 FILMES
+                echo "</div></li>";
+                $flag = false;
+            }
+        }
+    }
+
     function getIndice() {
         return $this->indice;
     }

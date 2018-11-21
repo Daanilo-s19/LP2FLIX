@@ -66,12 +66,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 echo "  
         <div class=\"w3ls-login box box--big\">
             <!-- form starts here -->
-            <form action=\"BANCO/ValidarFilme.php\" method=\"POST\">               
-                <div class=\"agile-field-txt\">                           
-                    <input type=\"text\" name=\"tipo\" placeholder=\"TIPO DO FILME\" required=\"\" id=\"myInput\" />			
+            <form action=\"BANCO/inserirMedia.php\" method=\"POST\">               
+                <div class=\"agile-field-txt\"> 
+                     <select name=\"tipo\">
+                <option value=\"FILME\">FILME</option>
+                <option value=\"SERIE\">SERIE</option>
+                </select>
                 </div>
-                <div class=\"agile-field-txt\">                           
-                    <input type=\"text\" name=\"genero\" placeholder=\"GENERO DO FILME\" required=\"\" id=\"myInput\" />			
+                <div class=\"agile-field-txt\">
+                <select name=\"genero\">
+                <option value=\"ANIMACAO\">ANIMAÇÃO</option>
+                <option value=\"ACAO\">ACAO</option>
+                <option value=\"AVENTURA\">AVENTURA</option>
+                <option value=\"DRAMA\">DRAMA</option>
+                <option value=\"ROMANCE\">ROMANCE</option>
+                <option value=\"SUSPENSE\">SUSPENSE</option>
+                <option value=\"COMEDIA\">COMEDIA</option>
+                <option value=\"DOCUMENTARIO\">DOCUMENTARIO</option>
+                <option value=\"FAMILIA\">FAMILIA</option>
+                <option value=\"GUERRA\">GUERRA</option>
+                </select>
+                    			
                 </div>	
                 <div class=\"agile-field-txt\">                           
                     <input type=\"text\" name=\"titulo\" placeholder=\"TITULO DO FILME\" required=\"\"  />			

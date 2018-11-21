@@ -33,13 +33,14 @@ class GM {
         $this->ValidaMedia($midia);
     }
 
-    public function ValidaMedia($midia) {
+    private function ValidaMedia($midia) {
         $indice = 1;
         $results = $this->db->selectDB("SELECT * FROM midia ORDER BY indice DESC LIMIT 1");
         if ($results != NULL) {
-            foreach ($results as $midia)
-                $indice = $midia["indice"];
+            foreach ($results as $video)
+                $indice = $video["indice"];
         }
+        $indice++;
         $tipo = $midia->getTipo();
         $genero = $midia->getGenero();
         $titulo = $midia->getTitulo();
@@ -51,10 +52,20 @@ class GM {
         $avaliacao = $midia->getAvaliacao();
         $duracao = $midia->getDuracao();
         $classificacao = $midia->getClassificacao();
-        $temporada = $midia->getTemporada();
-        $bilheteria = $midia->getBilheteria();
+        if($tipo == "SERIE"){
+            $temporada = $midia->getTemporada(); 
+            $bilheteria = 0;
+        } else {
+              $bilheteria = $midia->getBilheteria();
+              $temporada = 0;
+            
+        }
+       
+      
 
-        $query = "INSERT INTO midia (indice, tipo, genero, titulo, diretor, elenco, imagem, sinopse, ano, avaliacao, duracao, classificacao, temporada, bilheteria) VALUES ('$indice', '$tipo', '$genero','$titulo',' $diretor','$elenco','$imagem','$sinopse','$ano','$avaliacao','$duracao',' $classificacao','$temporada','$bilheteria')";
+        $query = "INSERT INTO midia (indice, tipo, genero, titulo, diretor, elenco, imagem, sinopse, ano,"
+        . " avaliacao, duracao, classificacao, temporada, bilheteria) VALUES ('$indice', '$tipo', '$genero','$titulo',' "
+        . "$diretor','$elenco','$imagem','$sinopse','$ano','$avaliacao','$duracao',' $classificacao','$temporada','$bilheteria')";
         if ($this->db->insertDB($query) == true) {
             header("Location:../CadastrarMidia.php?sucesso=1");
         } else {
@@ -66,7 +77,7 @@ class GM {
         $this->ValidaUsuario($usuario);
     }
 
-    public function ValidaUsuario($usuario) {
+    private function ValidaUsuario($usuario) {
         $login = $usuario->GetLogin();
         $senha = $usuario->GetSenha();
         $email = $usuario->GetEmail();
@@ -123,12 +134,12 @@ class GM {
 
 /* * ******************** CLASSE USUÁRIO************************* */
 
-class Usuario extends GM {
+class Usuario {
 
     protected $db, $login, $senha, $email, $datanasc;
 
     public function __construct($login, $senha) {
-        parent::__construct();
+        $this->db = new DBController();
         $this->login = $login;
         $this->senha = $senha;
     }
