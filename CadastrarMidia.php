@@ -85,6 +85,7 @@ echo "
                 <option value=\"DOCUMENTARIO\">DOCUMENTARIO</option>
                 <option value=\"FAMILIA\">FAMILIA</option>
                 <option value=\"GUERRA\">GUERRA</option>
+                <option value=\"TERROR\">TERROR</option>
                 </select>
                     			
                 </div>	

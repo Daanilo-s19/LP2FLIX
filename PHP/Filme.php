@@ -19,9 +19,13 @@ class Filme extends Media {
            
         parent::Exibiçao($video);
         echo "
-             <p class=\"fexi_header_para\"><span>Bilheteria<label>:</label> </span>{$video->getBilheteria()}</p>
+             <p class=\"fexi_header_para\"><span>Bilheteria<label>:</label> </span>'$'{$video->getBilheteria()}</p>
                 </div>
                    </div>";
+             
+    }
+    public function __destruct() {
+        $this->db->closeDB();
     }
 
     function getBilheteria() {

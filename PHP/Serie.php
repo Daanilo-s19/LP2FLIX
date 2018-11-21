@@ -22,6 +22,7 @@ class Serie extends Media {
              <p class=\"fexi_header_para\"><span>Temporadas<label>:</label> </span>{$video->getTemporada()} temporadas</p>
                 </div>
                    </div>";
+             
     }
 
     function getTemporada() {

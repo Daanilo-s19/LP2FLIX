@@ -154,26 +154,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $GM = new GM();
             $login = $_GET["login"];
             $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : NULL;
-            $acesso = $_GET["login"]. '-' .$_GET["indice"]; // chave unica
-           
+            $acesso = $_GET["login"] . '-' . $_GET["indice"]; // chave unica
+            
+            
+
 
             if ($procurar != NULL) {
                 $video = new Filme(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
                 $video->procurar($procurar);
-                
             } else {
-                if ($_GET["tipo"] == "FILME") { /******************************** EXIBIÇÃO DO FILME ESCOLHIDO ************************************ */
-                    $exibir = new Filme($_GET["indice"],$_GET["tipo"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                if ($_GET["tipo"] == "FILME") { /*                 * ****************************** EXIBIÇÃO DO FILME ESCOLHIDO ************************************ */
+                    $exibir = new Filme($_GET["indice"], $_GET["tipo"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
                     $exibir->Exibiçao($exibir);
-                   
                 } else {
-                    $exibir = new Serie($_GET["indice"],$_GET["tipo"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                    $exibir = new Serie($_GET["indice"], $_GET["tipo"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
                     $exibir->Exibiçao($exibir);
                 }
-            }      
-          
-            @$GM->ScoreUser($acesso,  $_GET["login"], $_GET["indice"], $_GET["duracao"]);    /******************** TABELA VISITADOS - SCORE DO FILME POR USUÁRIO ************************************** */
-            @$GM->RankingFilme($_GET["titulo"], $_GET["indice"], $_GET["duracao"]); /****************************TABELA DESTAQUE - SCORE TOTAL DO FILME ********************************************** */
+            }
+
+            @$GM->ScoreUser($acesso, $_GET["login"], $_GET["indice"], $_GET["duracao"]);    /*             * ****************** TABELA VISITADOS - SCORE DO FILME POR USUÁRIO ************************************** */
+            @$GM->RankingFilme($_GET["titulo"], $_GET["indice"], $_GET["duracao"]); /*             * **************************TABELA DESTAQUE - SCORE TOTAL DO FILME ********************************************** */
             ?> 
 
         </div>
@@ -205,17 +205,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
-<?php
-$video = new Filme(NULL, "SERIE", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-$video->recomendado() /* recomendado */
-?>
+                            <?php
+                            $video = new Filme(NULL, "SERIE", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                            $video->recomendado() /* recomendado */
+                            ?>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
-<?php $video->destaque(); /* DESTAQUE */ ?>
+                            <?php $video->destaque(); /* DESTAQUE */ ?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-<?php $video->visitados($login); /* ASSISTIR NOVAMENTE */ ?>
+                            <?php $video->visitados($login); /* ASSISTIR NOVAMENTE */ ?>
 
                         </div>                        
                     </div>

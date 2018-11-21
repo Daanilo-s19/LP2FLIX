@@ -27,12 +27,12 @@ abstract class Media {
 
     public function cartaz($login) {
         echo "  <div class=\"col-md-2 w3l-movie-gride-agile\">
-                                            <a href=\"ExibirFilme.php?indice={$this->indice}&tipo={$this->tipo}&titulo={$this->titulo}&login=$login&duracao={$this->duracao}\" class=\"hvr-shutter-out-horizontal\"><img src={$this->imagem} title=\"album-name\" class=\"img-responsive\" alt=\" \" />
+                                            <a href=\"ExibirFilme.php?indice={$this->indice}&tipo={$this->tipo}&titulo={$this->titulo}&login=$login&duracao={$this->duracao}\" class=\"hvr-shutter-out-horizontal\"><img src={$this->imagem} title=\"{$this->titulo}\" class=\"img-responsive\" alt=\" \" />
                                                 <div class=\"w3l-action-icon\"><i class=\"fa fa-play-circle\" aria-hidden=\"true\"></i></div>
                                             </a>
                                             <div class=\"mid-1 agileits_w3layouts_mid_1_home\">
                                                 <div class=\"w3l-movie-text\">
-                                                    <h6><a href=\"ExibirFilme.php\">{$this->titulo}</a></h6>							
+                                                    <h6><a href=\"ExibirFilme.php\"TITULO DO FILME OCULTO></a></h6>							
                                                 </div>
                                                 <div class=\"mid-2 agile_mid_2_home\">
                                                     <p>{$this->ano}</p>
@@ -79,16 +79,16 @@ abstract class Media {
     }
 
     public function recomendado() {
-        $results = $this->db->selectDB("SELECT * FROM midia");
-        foreach ($results as $midia) {
-            if ($midia["tipo"] == "FILME") {
-                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                $video->cartaz($_GET["login"]);
-            } else {
-                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                $video->cartaz($_GET["login"]);
-            }
-        }
+$results = $this->db->selectDB("SELECT * FROM midia AS m INNER JOIN visitados AS v  ON m.indice = v.indice WHERE login = 'Admin'  ORDER BY `score` DESC LIMIT 5");
+foreach ($results as $midia) {
+    if ($midia["tipo"] == "FILME") {
+        $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+        $video->cartaz($_GET["login"]);
+    } else {
+        $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+        $video->cartaz($_GET["login"]);
+    }
+}
     }
 
     public function destaque() {
@@ -158,6 +158,9 @@ abstract class Media {
             }
         } else
             echo "<h4 class=\"latest-text w3_latest_text\">FILME NÃO ENCONTRADO</h4>";
+    }
+    public function __destruct() {
+        $this->db->closeDB();
     }
 
     function getIndice() {

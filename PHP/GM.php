@@ -19,6 +19,7 @@ class GM {
         } else {
             header("Location:../RetirarUsuario.php?sucesso=0");
         }
+       
     }
 
     public function RetirarFilme($titulo) {
@@ -27,6 +28,7 @@ class GM {
         } else {
             header("Location:../RetirarMidia.php?sucesso=0");
         }
+         
     }
 
     public function InserirMidia($midia) {
@@ -60,9 +62,6 @@ class GM {
               $temporada = 0;
             
         }
-       
-      
-
         $query = "INSERT INTO midia (indice, tipo, genero, titulo, diretor, elenco, imagem, sinopse, ano,"
         . " avaliacao, duracao, classificacao, temporada, bilheteria) VALUES ('$indice', '$tipo', '$genero','$titulo',' "
         . "$diretor','$elenco','$imagem','$sinopse','$ano','$avaliacao','$duracao',' $classificacao','$temporada','$bilheteria')";
@@ -71,6 +70,7 @@ class GM {
         } else {
             header("Location:../CadastrarMidia.php?sucesso=0");
         }
+        
     }
 
     public function InserirUser($usuario) {
@@ -89,6 +89,7 @@ class GM {
         } else {
             header("Location:../Cadastro.php?sucesso=0");
         }
+         
     }
 
     public function RankingFilme($titulo, $indice, $duracao) {
@@ -106,6 +107,7 @@ class GM {
             $query = "UPDATE destaque SET exibido = '$exibido', score = '$ranking' WHERE indice = '$indice'";
             $this->db->insertDB($query);
         }
+         
     }
 
     public function ScoreUser($acesso, $login, $indice, $duracao) {
@@ -123,6 +125,10 @@ class GM {
             $query = "UPDATE visitados SET count = '$count', score = '$score' WHERE acesso = '$acesso'";
             $this->db->insertDB($query);
         }
+         
+    }
+    public function __destruct() {
+        $this->db->closeDB();
     }
 
     public function GetDB() {
@@ -138,23 +144,30 @@ class Usuario {
 
     protected $db, $login, $senha, $email, $datanasc;
 
-    public function __construct($login, $senha) {
+    public function __construct($login,$senha) {
         $this->db = new DBController();
         $this->login = $login;
-        $this->senha = $senha;
+        $this->senha = md5($senha);
+        
     }
 
     public function Acesso() {
-        if ($this->login == "admin" and $this->senha == "admin")
+        if ($this->login == "admin" and $this->senha == md5("admin"))
             header("Location:../IndexMASTER.php");
         else {
-            $results = $this->db->selectDB("SELECT login FROM usuarios WHERE login = '$this->login'");
-            if ($results != NULL) {
+            $results = $this->db->selectDB("SELECT * FROM usuarios WHERE login = '$this->login'");
+            foreach ($results as $senha){
+                if($senha["senha"] == $this->GetSenha())
+                    $passou = true;
+            }
+            
+            if ($passou) {
                 setcookie("login", $this->login);
                 header("Location:../entretenimento/SiteIndex.php?login={$this->login}");
             } else
                 header("Location:../index.php?err=true");
         }
+         $this->db->closeDB();
     }
 
     public function setEmail($email) {

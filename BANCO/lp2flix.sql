@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Nov-2018 às 01:55
+-- Generation Time: 21-Nov-2018 às 17:29
 -- Versão do servidor: 10.1.36-MariaDB
 -- versão do PHP: 7.2.11
 
@@ -80,7 +80,18 @@ INSERT INTO `midia` (`indice`, `tipo`, `genero`, `titulo`, `diretor`, `elenco`, 
 (27, 'FILME', 'AVENTURA', ' O Senhor dos Aneis - O Retor', ' Peter Jackson', 'Sean Astin, Elijah Wood, Viggo Mortensen mais', 'images/A28.jpg', 'Sauron planeja um grande ataque a Minas Tirith, capital de Gondor, o que faz com que Gandalf (Ian McKellen) e Pippin (Billy Boyd) partam para o local na intenÃ?Â§Ã?Â£o de ajudar a resistÃ?Âªncia. Um exÃ?Â©rcito Ã?Â© reunido por Theoden (Bernard Hill) em Rohan, em mais uma tentativa de deter as forÃ?Â§as de Sauron. Enquanto isso Frodo (Elijah Wood), Sam (Sean Astin) e Gollum (Andy Serkins) seguem sua viagem rumo Ã?Â  Montanha da PerdiÃ?Â§Ã?Â£o, para destruir o Um Anel.', '2003', 0, 201, 12, 0, 5000000),
 (28, '8', '8', '8', ' 8', '8', '8', '8', '8', 8, 8, 88, 0, 8),
 (29, 'FILME', '8', '8', ' 8', '8', '8', '8', '8', 8, 8, 8, 0, 8),
-(30, 'FILME', 'ANIMACAO', '7', ' 7', '7', '7', '7', '7', 7, 7, 7, 0, 7);
+(30, 'FILME', 'ANIMACAO', '7', ' 7', '7', '7', '7', '7', 7, 7, 7, 0, 7),
+(31, 'FILME', 'ANIMACAO', 'hÃ¡ perigos no aÃ§ai', ' tiÃ£o sem mÃ£o', '8', '8', '8', '8', 8, 8, 8, 0, 8),
+(32, 'FILME', 'AVENTURA', 'Star Wars: Episode V - The Emp', ' Irvin Kershner', 'Isaac Bardavid, Mark Hamill, Harrison Ford mais', 'images/A29.jpg', 'As forÃ§as imperais comandadas por Darth Vader (David Prowse) lanÃ§am um ataque contra os membros da resistÃªncia, que sÃ£o obrigados a fugir. Enquanto isso Luke Skywalker (Mark Hamill) tenta encontrar o Mestre Yoda, que poderÃ¡ ensinÃ¡-lo a dominar a \"ForÃ§a\" e tornÃ¡-lo um cavaleiro jedi. No entanto, Darth Vader planeja levÃ¡-lo para o lado negro da \"ForÃ§a\".', '1980', 4, 124, 12, 0, 30000000),
+(33, 'FILME', 'AVENTURA', 'De Volta para o Futuro', ' Robert Zemeckis', 'Michael J. Fox, Christopher Lloyd, Lea Thompson mais', 'images/A30.jpg', 'Um jovem (Michael J. Fox) aciona acidentalmente uma mÃ¡quina do tempo construÃ­da por um cientista (Christopher Lloyd) em um Delorean, retornando aos anos 50. LÃ¡ conhece sua mÃ£e (Lea Thompson), antes ainda do casamento com seu pai, que fica apaixonada por ele. Tal paixÃ£o pÃµe em risco sua prÃ³pria existÃªncia, pois alteraria todo o futuro, forÃ§ando-o a servir de cupido entre seus pais', '1985', 4, 116, 10, 0, 19000000),
+(34, 'FILME', 'AVENTURA', 'HARRY POTTER E AS RELÃQUIAS D', ' David Yates', 'Will Dunn, Rohan Gotobed, Alfie McIlwain mais', 'images/A31.jpg', 'Harry Potter (Daniel Radcliffe) e seus amigos Rony Weasley (Rupert Grint) e Hermione Granger (Emma Watson) seguem Ã  procura das horcruxes. O objetivo do trio Ã© encontrÃ¡-las e, em seguida, destruÃ­-las, de forma a eliminar lorde Voldemort (Ralph Fiennes) de uma vez por todas. Com a ajuda do duende Grampo (Warwick Davis), eles entram no banco Gringotes de forma a invadir o cofre de Bellatrix Lestrange (Helena Bonham Carter).', '2011', 4, 129, 16, 0, 125000000),
+(35, 'FILME', 'AVENTURA', 'O Senhor dos AnÃ©is - A Socied', ' Peter Jackson', 'Elijah Wood, Sean Astin, Ian McKellen mais', 'images/A32.jpg', 'Numa terra fantÃ¡stica e Ãºnica, chamada Terra-MÃ©dia, um hobbit (seres de estatura entre 80 cm e 1,20 m, com pÃ©s peludos e bochechas um pouco avermelhadas) recebe de presente de seu tio o Um Anel, um anel mÃ¡gico e maligno que precisa ser destruÃ­do antes que caia nas mÃ£os do mal. Para isso o hobbit Frodo (Elijah Woods) terÃ¡ um caminho Ã¡rduo pela frente, onde encontrarÃ¡ perigo, medo e personagens bizarros. Ao seu lado para o cumprimento desta jornada aos poucos ele poderÃ¡ contar com outros hobbits, um elfo, um anÃ£o, dois humanos e um mago, totalizando 9 pessoas que formarÃ£o a Sociedade do Anel.', '2001', 5, 178, 16, 0, 90000000),
+(36, 'FILME', 'AVENTURA', 'GLADIADOR', ' Ridley Scott', 'Russell Crowe, Joaquin Phoenix, Connie Nielsen mais', 'images/A34.jpg', 'Nos dias finais do reinado de Marcus Aurelius (Richard Harris), o imperador desperta a ira de seu filho Commodus (Joaquin Phoenix) ao tornar pÃºblica sua predileÃ§Ã£o em deixar o trono para Maximus (Russell Crowe), o comandante do exÃ©rcito romano. Sedento pelo poder, Commodus mata seu pai, assume a coroa e ordena a morte de Maximus, que consegue fugir antes de ser pego e passa a se esconder sob a identidade de um escravo e gladiador do ImpÃ©rio Romano.', '2000', 5, 155, 15, 0, 103000000),
+(37, 'FILME', 'AVENTURA', 'O AUTO DA COMPADECIDA', '  Guel Arraes', 'Matheus Nachtergaele, Selton Mello, Denise Fraga mais', 'images/A33.jpg', 'As aventuras dos nordestinos JoÃ£o Grilo (Matheus Natchergaele), um sertanejo pobre e mentiroso, e ChicÃ³ (Selton Mello), o mais covarde dos homens. Ambos lutam pelo pÃ£o de cada dia e atravessam por vÃ¡rios episÃ³dios enganando a todos do pequeno vilarejo de TaperoÃ¡, no sertÃ£o da ParaÃ­ba. A salvaÃ§Ã£o da dupla acontece com a apariÃ§Ã£o da Nossa Senhora (Fernanda Montenegro). AdaptaÃ§Ã£o da obra de Ariano Suassuna.', '2000', 5, 95, 0, 0, 100000),
+(38, 'FILME', 'DRAMA', 'O PODEROSO CHEFÃƒO', '  Francis Ford Coppola', 'Marlon Brando, Al Pacino, James Caan mais', 'images/A35.jpg', 'Don Vito Corleone (Marlon Brando) Ã© o chefe de uma \"famÃ­lia\" de Nova York que estÃ¡ feliz, pois Connie (Talia Shire), sua filha, se casou com Carlo (Gianni Russo). PorÃ©m, durante a festa, Bonasera (Salvatore Corsitto) Ã© visto no escritÃ³rio de Don Corleone pedindo \"justiÃ§a\", vinganÃ§a na verdade contra membros de uma quadrilha, que espancaram barbaramente sua filha por ela ter se recusado a fazer sexo para preservar a honra. Vito discute, mas os argumentos de Bonasera o sensibilizam e ele promete que os homens, que maltrataram a filha de Bonasera nÃ£o serÃ£o mortos, pois ela tambÃ©m nÃ£o foi, mas serÃ£o severamente castigados.', '1972', 5, 155, 16, 0, 6000001),
+(39, 'FILME', 'DRAMA', 'UM SONHO DE LIBERDADE', '  Frank Darabont', 'Tim Robbins, Morgan Freeman, Bob Gunton mais', 'images/A36.jpg', 'Em 1946, Andy Dufresne (Tim Robbins), um jovem e bem sucedido banqueiro, tem a sua vida radicalmente modificada ao ser condenado por um crime que nunca cometeu, o homicÃ­dio de sua esposa e do amante dela. Ele Ã© mandado para uma prisÃ£o que Ã© o pesadelo de qualquer detento, a PenitenciÃ¡ria Estadual de Shawshank, no Maine. ', '1994', 5, 140, 12, 0, 25000000),
+(40, 'FILME', 'DRAMA', 'A VIDA Ã‰ BELA', '  Roberto Benigni', 'Roberto Benigni, Horst Buchholz, Marisa Paredes mais', 'images/A37.jpg', 'Durante a Segunda Guerra Mundial na ItÃ¡lia, o judeu Guido (Roberto Benigni) e seu filho GiosuÃ© sÃ£o levados para um campo de concentraÃ§Ã£o nazista. Afastado da mulher, ele tem que usar sua imaginaÃ§Ã£o para fazer o menino acreditar que estÃ£o participando de uma grande brincadeira, com o intuito de protegÃª-lo do terror e da violÃªncia que os cercam.', '1998', 5, 157, 0, 0, 1000000),
+(41, 'FILME', 'DRAMA', 'HISTÃ“RIAS CRUZADAS', ' Tate Taylor', 'Emma Stone, Jessica Chastain, Viola Davis mais', 'images/A38.jpg', 'Jackson, pequena cidade no estado do Mississipi, anos 60. Skeeter (Emma Stone) Ã© uma garota da sociedade que retorna determinada a se tornar escritora. Ela comeÃ§a a entrevistar as mulheres negras da cidade, que deixaram suas vidas para trabalhar na criaÃ§Ã£o dos filhos da elite branca, da qual a prÃ³pria Skeeter faz parte. Aibileen Clark (Viola Davis), a emprega da melhor amiga de Skeeter, Ã© a primeira a conceder uma entrevista, o que desagrada a sociedade como um todo. Apesar das crÃ­ticas, Skeeter e Aibileen continuam trabalhando juntas e, aos poucos, conseguem novas adesÃµes.', '2011', 3, 146, 10, 0, 25000000);
 
 -- --------------------------------------------------------
 
@@ -124,35 +135,65 @@ CREATE TABLE `visitados` (
 --
 
 INSERT INTO `visitados` (`acesso`, `login`, `indice`, `count`, `score`) VALUES
-('-', '', 0, 1, 1),
-('Danilo-1', 'Danilo', 1, 15, 721),
-('Danilo-10', 'Danilo', 10, 7, 375),
-('Danilo-11', 'Danilo', 11, 2, 51),
-('Danilo-14', 'Danilo', 14, 8, 74),
-('Danilo-15', 'Danilo', 15, 2, 23),
-('Danilo-16', 'Danilo', 16, 6, 69),
-('Danilo-2', 'Danilo', 2, 3, 100),
-('Danilo-20', 'Danilo', 20, 10, 50),
-('Danilo-22', 'Danilo', 22, 5, 294),
-('Danilo-25', 'Danilo', 25, 51, 3425),
-('Danilo-29', 'Danilo', 29, 4, 14),
-('Danilo-3', 'Danilo', 3, 7, 339),
-('Danilo-31', 'Danilo', 31, 4, 302),
-('Danilo-4', 'Danilo', 4, 1, 1),
-('Danilo-6', 'Danilo', 6, 10, 401),
-('Danilo-7', 'Danilo', 7, 6, 263),
-('Danilo-8', 'Danilo', 8, 5, 190),
-('Danilo-9', 'Danilo', 9, 4, 116),
-('opa-2', 'opa', 2, 1, 113),
-('teste-20', 'teste', 20, 4, 17),
-('teste-24', 'teste', 24, 1, 1),
-('teste-4', 'teste', 4, 5, 178),
-('teste-8', 'teste', 8, 1, 1);
+('Admin-32', 'Admin', 32, 1, 124),
+('Admin-34', 'Admin', 34, 1, 129),
+('Admin-38', 'Admin', 38, 1, 155),
+('Admin-4', 'Admin', 4, 2, 0),
+('Admin-5', 'Admin', 5, 13, 534),
+('Danilo--1', 'Danilo', -1, 2, 5),
+('Danilo-0', 'Danilo', 0, 4, 155),
+('Danilo-10', 'Danilo', 10, 10, 455),
+('Danilo-16', 'Danilo', 16, 29, 588),
+('Danilo-2', 'Danilo', 2, 1, 113),
+('Danilo-22', 'Danilo', 22, 6, 343),
+('Danilo-7', 'Danilo', 7, 1, 95),
+('Danilo-SEARCH', 'Danilo', 0, 16, 75),
+('Danilo-X', 'Danilo', 0, 4, 15);
+
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `destaque`
+--
+
+CREATE TABLE `destaque` (
+  `filme` varchar(30) NOT NULL,
+  `indice` int(11) NOT NULL,
+  `exibido` int(11) NOT NULL,
+  `score` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `destaque`
+--
+
+INSERT INTO `destaque` (`filme`, `indice`, `exibido`, `score`) VALUES
+('', 0, 7, 30),
+('A Bela e a Fera', 5, 13, 534),
+('A era do gelo', 0, 7, 30),
+('Como Treinar o seu DragÃ£o 2', 4, 2, 0),
+('Divertida Mente', 7, 1, 95),
+('HARRY POTTER E AS RELÃQUIAS D', 34, 1, 129),
+('Moana', 2, 1, 113),
+('O PODEROSO CHEFÃƒO', 38, 1, 155),
+('Procurando Nemo', 10, 10, 455),
+('procurar', -1, 2, 5),
+('Star Wars: Episode V - The Emp', 32, 1, 124),
+('Supernatural', 16, 29, 588),
+('VELOZES ', 22, 6, 343);
 
 --
 -- Indexes for dumped tables
 --
 
+--
+-- Indexes for table `destaque`
+--
+ALTER TABLE `destaque`
+  ADD PRIMARY KEY (`filme`);
+COMMIT;
 --
 -- Indexes for table `midia`
 --
