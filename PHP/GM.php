@@ -175,14 +175,15 @@ class Usuario {
             foreach($generoDestaque as $midia){
                 $assistidos[] = $midia["indice"];
             }
+            $excluir = "";
+            foreach($assistidos as $item){
+                $excluir = $excluir . " AND m.indice != '$item'";
+            }
             $query = "";
             foreach($generoDestaque as $m_midia){
                 $genero = $m_midia["genero"];
                 $query = "SELECT * FROM midia as m INNER JOIN destaque as d ON m.indice = d.indice WHERE (m.genero = '$genero'";
-                foreach($assistidos as $item){
-                    $query = $query . " AND m.indice != '$item'";
-                }
-                $query = $query . ") ORDER BY d.score DESC LIMIT 2";
+                $query = $query . $excluir . ") ORDER BY d.score DESC LIMIT 2";
                 $results = $this->db->selectDB($query);
                 if(empty($results)){
                     $query = "SELECT * FROM midia " . strstr($query, "WHERE");
