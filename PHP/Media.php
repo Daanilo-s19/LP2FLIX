@@ -27,7 +27,7 @@ abstract class Media {
 
     public function cartaz($login) {
         echo "  <div class=\"col-md-2 w3l-movie-gride-agile\">
-                                            <a href=\"ExibirFilme.php?indice={$this->indice}&tipo={$this->tipo}&login=$login\" class=\"hvr-shutter-out-horizontal\"><img src={$this->imagem} title=\"album-name\" class=\"img-responsive\" alt=\" \" />
+                                            <a href=\"ExibirFilme.php?indice={$this->indice}&tipo={$this->tipo}&titulo={$this->titulo}&login=$login&duracao={$this->duracao}\" class=\"hvr-shutter-out-horizontal\"><img src={$this->imagem} title=\"album-name\" class=\"img-responsive\" alt=\" \" />
                                                 <div class=\"w3l-action-icon\"><i class=\"fa fa-play-circle\" aria-hidden=\"true\"></i></div>
                                             </a>
                                             <div class=\"mid-1 agileits_w3layouts_mid_1_home\">
@@ -54,27 +54,27 @@ abstract class Media {
                                         </div>";
     }
 
-    public function Exibiçao() {
+    public function Exibiçao($video) {
         echo "
-        <h4 class=\"latest-text w3_latest_text w3_home_popular\">{$this->titulo}</h4>
+        <h4 class=\"latest-text w3_latest_text w3_home_popular\">{$video->getTitulo()}</h4>
          <div class=\"container\">
                    <div class=\"col-md-6 agile_tv_series_grid_left\">
                                                 <div class=\"w3ls_market_video_grid1\">
-                                                   <a href=\"https://www.youtube.com/results?search_query={$this->titulo}\" class=\"hvr-shutter-out-horizontal\"> <img src=\"ExibirImages/{$this->imagem}\"alt=\" \" class=\"img-responsive\" />
-                                                    <a href=\"https://www.youtube.com/results?search_query={$this->titulo}\"  class=\"w3_play_icon\" href=\"#small-dialog\">
+                                                   <a href=\"https://www.youtube.com/results?search_query={$video->getTitulo()}\" class=\"hvr-shutter-out-horizontal\"> <img src=\"ExibirImages/{$video->getImagem()}\"alt=\" \" class=\"img-responsive\" />
+                                                    <a href=\"https://www.youtube.com/results?search_query={$video->getTitulo()}\"  class=\"w3_play_icon\" href=\"#small-dialog\">
                                                         <span class=\"glyphicon glyphicon-play-circle\" aria-hidden=\"true\"></span>
                                                     </a>
                                                 </div>
                                             </div>
                                     <div class=\"col-md-6 agile_tv_series_grid_right\">
-                                                <p class=\"fexi_header_para\"><span class=\"conjuring_w3\">SINOPSE<label>:</label></span>{$this->sinopse}</p>
-                                                <p class=\"fexi_header_para\"><span>LANCAMENTO<label>:</label></span>{$this->ano}</p>
-                                                <p class=\"fexi_header_para\"><span>CLASSIFICAÇÃO<label>:</label></span>{$this->classificacao} anos</p>
-                                                  <p class=\"fexi_header_para\"><span>DURACAO<label>:</label></span>{$this->duracao} min.</p>
-                                                <p class=\"fexi_header_para\"><span>GENERO<label>:</label></span>{$this->genero} </p>
-                                                 <p class=\"fexi_header_para\"><span>DIRETOR<label>:</label></span>{$this->diretor}</p>
-                                                 <p class=\"fexi_header_para\"><span>ELENCO<label>:</label> </span>{$this->elenco}</p>
-                                                <p class=\"fexi_header_para fexi_header_para1\"><span>ESTRELAS<label>:</label></span>{$this->avaliacao}
+                                                <p class=\"fexi_header_para\"><span class=\"conjuring_w3\">SINOPSE<label>:</label></span>{$video->getSinopse()}</p>
+                                                <p class=\"fexi_header_para\"><span>LANCAMENTO<label>:</label></span>{$video->getAno()}</p>
+                                                <p class=\"fexi_header_para\"><span>CLASSIFICAÇÃO<label>:</label></span>{$video->getClassificacao()} anos</p>
+                                                  <p class=\"fexi_header_para\"><span>DURACAO<label>:</label></span>{$video->getDuracao()} min.</p>
+                                                <p class=\"fexi_header_para\"><span>GENERO<label>:</label></span>{$video->getGenero()} </p>
+                                                 <p class=\"fexi_header_para\"><span>DIRETOR<label>:</label></span>{$video->getDiretor()}</p>
+                                                 <p class=\"fexi_header_para\"><span>ELENCO<label>:</label> </span>{$video->getElenco()}</p>
+                                                <p class=\"fexi_header_para fexi_header_para1\"><span>ESTRELAS<label>:</label></span>{$video->getDuracao()}
                                                     <a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a></p>";
     }
 
@@ -98,7 +98,7 @@ abstract class Media {
                 $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
                 $video->cartaz($_GET["login"]);
             } else {
-                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
                 $video->cartaz($_GET["login"]);
             }
         }
@@ -118,8 +118,8 @@ abstract class Media {
     }
 
     public function corousel($login) {
-        $flag = false;
         $lista = 0;
+        $flag = false;
         $results = $this->db->selectDB("SELECT * FROM midia");
         foreach ($results as $midia) {
             if (!$flag) {// ABRE A LISTA
@@ -127,24 +127,37 @@ abstract class Media {
                 $flag = true;
                 $lista++;
             }
-            
             if ($midia["tipo"] == "FILME" && $midia["genero"] == $this->getGenero()) {//MOSTRA O FILME DO GENERO
                 $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
                 $video->cartaz($login);
                 $lista++;
             }
-            if($midia["tipo"] == "SERIE"  && $this->getGenero() == NULL){
+            if ($midia["tipo"] == "SERIE" && $this->getGenero() == NULL) {
                 $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
                 $video->cartaz($login);
                 $lista++;
             }
-            
-                
             if (($lista % 7) == 0) {// FECHA A LISTA A CADA 7 FILMES
                 echo "</div></li>";
                 $flag = false;
             }
         }
+    }
+
+    public function procurar($procurar) {
+        $results = $this->db->selectDB("SELECT * FROM midia WHERE titulo ='$procurar'");
+        if ($results != NULL) {
+            foreach ($results as $midia) {
+                if ($midia["tipo"] == "FILME") {
+                    $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                    $video->Exibiçao($video);
+                } else {
+                    $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                    $video->Exibiçao($video);
+                }
+            }
+        } else
+            echo "<h4 class=\"latest-text w3_latest_text\">FILME NÃO ENCONTRADO</h4>";
     }
 
     function getIndice() {
