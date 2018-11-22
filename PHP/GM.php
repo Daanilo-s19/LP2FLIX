@@ -182,29 +182,31 @@ class Usuario {
             $query = "";
             foreach($generoDestaque as $m_midia){
                 $genero = $m_midia["genero"];
-                $query = "SELECT * FROM midia as m INNER JOIN destaque as d ON m.indice = d.indice WHERE (m.genero = '$genero'";
+                $tipo = $m_midia["tipo"];
+                $query = "SELECT * FROM midia as m INNER JOIN destaque as d ON m.indice = d.indice WHERE (m.genero = '$genero' AND m.tipo = '$tipo'";
                 $query = $query . $excluir . ") ORDER BY d.score DESC LIMIT 2";
                 $results = $this->db->selectDB($query);
                 if(empty($results)){
-                    $query = "SELECT * FROM midia " . strstr($query, "WHERE");
-                    $query = strstr($query, "ORDER", true) . "LIMIT 2";
+                    str_replace("AND m.tipo = '$tipo'", "", $query);
                     $results = $this->db->selectDB($query);
                 }
                 foreach ($results as $midia) {
                     $indice = $midia["indice"];
                     $excluir = $excluir . " AND m.indice != '$indice'";
-                    if ($midia["tipo"] == "FILME") {
-                        $video = new Filme($indice, $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                        $video->cartaz($this->login);
+                    if ($tipo == "FILME") {
+                        $video = new Filme($indice, $tipo, $genero, $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                        $video->cartaz($_GET["login"]);
                     } else {
-                        $video = new Filme($indice, $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                        $video->cartaz($this->login);
+                        $video = new Serie($indice, $tipo, $genero, $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                        $video->cartaz($_GET["login"]);
                     }
                 }
             }
         }
-        else
+        else{
+            echo "<h4 class=\"latest-text w3_latest_text\">ESTAMOS AJUSTANDO AS RECOMENDAÇÕES PARA AS SUAS PREFERÊNCIAS</h4>";
             $this->MostraDestaque();
+        }
     }
 
     public function MostraDestaque(){
@@ -225,10 +227,10 @@ class Usuario {
         foreach ($results as $midia) {
             if ($midia["tipo"] == "FILME") {
                 $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                $video->cartaz($this->login);
+                $video->cartaz($_GET["login"]);
             } else {
-                $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                $video->cartaz($this->login);
+                $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
+                $video->cartaz($_GET["login"]);
             }
         }
     }
