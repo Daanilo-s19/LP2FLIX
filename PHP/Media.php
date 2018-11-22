@@ -48,7 +48,6 @@ abstract class Media {
                                                     <div class=\"clearfix\"></div>
                                                 </div>
                                             </div>
-                                            
                                         </div>";
     }
 
@@ -102,7 +101,8 @@ abstract class Media {
             }
         }
     }
-
+    abstract function Exibircategoria($login);
+    
     public function __destruct() {
         $this->db->closeDB();
     }
