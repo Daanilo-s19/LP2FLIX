@@ -236,7 +236,7 @@ class Usuario {
     }
     
     public function ProcurarMidia($procurar) {
-        $results = $this->db->selectDB("SELECT * FROM midia WHERE titulo ='$procurar'");
+        $results = $this->db->selectDB("SELECT * FROM midia WHERE INSTR(titulo, '$procurar')");
         if ($results != NULL) {
             foreach ($results as $midia) {
                 if ($midia["tipo"] == "FILME") {

@@ -269,7 +269,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
-                                <?php $usuario->MostraRecomendados();/* RECOMENDADO*/ ?>
+                                <?php @$usuario->MostraRecomendados();/* RECOMENDADO*/ ?>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
