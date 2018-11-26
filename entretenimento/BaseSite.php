@@ -54,7 +54,7 @@ class BaseSite {
                                     </ul>
                                 </li>
                                 <li><a href=\"MidiaCategoria.php?tipo=SERIE&genero=SERIE&login=$login\">SÉRIES</a></li>                                
-                                <li><a href=\"short-codes.html\">Perfumarias</a></li>
+                                <li><a href=\"MidiaCategoria.php?tipo=FILME&genero=EM BREVE&login=$login&breve=2019\">EM BREVE</a></li>
                                 <li><a href=\"../index.php\">SAIR</a></li>
                                 <li><a href=\"#\"></a></li> 
                             </ul>";

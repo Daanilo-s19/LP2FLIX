@@ -19,7 +19,7 @@ class Filme extends Media {
 
         parent::Exibiçao($video);
         echo "
-             <p class=\"fexi_header_para\"><span>Bilheteria<label>:</label> </span>'$'{$video->getBilheteria()}</p>
+             <p class=\"fexi_header_para\"><span>Bilheteria<label>:</label> </span>$ {$video->getBilheteria()}</p>
                 </div>
                    </div>";
     }
@@ -34,6 +34,18 @@ class Filme extends Media {
                 }
         } else
         echo "<h4 class=\"latest-text w3_latest_text\">MIDIA NÃO ENCONTRADO</h4>";
+    }
+    
+    public function lancamento($login){
+         $results = $this->db->selectDB("SELECT * FROM midia WHERE ano = '{$this->getAno()}'");
+        if ($results != NULL)
+            foreach ($results as $midia){
+                if($this->getTipo() == $midia["tipo"]){
+                    $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
+                    $video->cartaz($login);
+                }
+        } else
+        echo "<h4 class=\"latest-text w3_latest_text\">NAO HÁ LANÇAMENTO ENCONTRADO</h4>";
     }
 
     public function __destruct() {

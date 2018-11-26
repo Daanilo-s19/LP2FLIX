@@ -235,20 +235,24 @@ class Usuario {
         }
     }
     
-    public function ProcurarMidia($procurar) {
+    public function ProcurarMidia($procurar, $login) {
+        echo "<!-- Latest-tv-series -->
+        <div class=\"Latest-tv-series\">
+            <div class=\"container\">";
         $results = $this->db->selectDB("SELECT * FROM midia WHERE INSTR(titulo, '$procurar')");
         if ($results != NULL) {
             foreach ($results as $midia) {
                 if ($midia["tipo"] == "FILME") {
                     $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
-                    $video->Exibiçao($video);
+                    $video->cartaz($login);
                 } else {
                     $video = new Serie($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["temporada"]);
-                    $video->Exibiçao($video);
+                    $video->cartaz($login);
                 }
             }
         } else
             echo "<h4 class=\"latest-text w3_latest_text\">FILME NÃO ENCONTRADO</h4>";
+        echo " </div></div>";
     }
 
     public function setSenha($senha){

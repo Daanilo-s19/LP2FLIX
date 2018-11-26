@@ -144,6 +144,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         require_once("../PHP/Filme.php");
         require_once("../PHP/Serie.php");
         require_once("../BANCO/dbcontroller.php");
+        $_GET["breve"] = isset($_GET["breve"])? $_GET["breve"] : NULL;
         
        
 
@@ -154,23 +155,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <section class=\"slider\">
                     <div class=\"flexslider\">";
                         
+                if($_GET["breve"]!=NULL){
+                    $video =  new Filme(NULL, $_GET["tipo"],NULL, NULL, NULL, NULL, NULL, NULL, $_GET["breve"], NULL, NULL, NULL, NULL);
+                    $video->lancamento($_GET["login"]);
+                }else{
+                    if ($_GET["tipo"] == "FILME") {
+                        $video = new Filme(NULL, $_GET["tipo"], $_GET["genero"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                        $video->Exibircategoria($_GET["login"]);
+                    }
+                    else if($_GET["tipo"] == "SERIE"){
+                        $video = new Serie(NULL, $_GET["tipo"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                        $video->Exibircategoria($_GET["login"]);
+                    }
+                    else
+                        echo "<h4 class=\"latest-text w3_latest_text\">MIDIA NÃO ENCONTRADO</h4>";
 
-        if ($_GET["tipo"] == "FILME") {
-            $video = new Filme(NULL, $_GET["tipo"], $_GET["genero"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-            $video->Exibircategoria($_GET["login"]);
-        }
-        else if($_GET["tipo"] == "SERIE"){
-            $video = new Serie(NULL, $_GET["tipo"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-            $video->Exibircategoria($_GET["login"]);
-        }
-        else
-            echo "<h4 class=\"latest-text w3_latest_text\">MIDIA NÃO ENCONTRADO</h4>";
-                           
-                    echo "       
-                        </div>
-                    </section>                
-                </div>
-            </div>";
+
+                }
+        echo "       
+                            </div>
+                        </section>                
+                    </div>
+                </div>";
         ?>
 
         <!-- pop-up-box -->  
@@ -200,14 +206,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
-<?php $usuario->MostraRecomendados(); /* RECOMENDADO */ ?>
+                            <?php @$usuario->MostraRecomendados(); /* RECOMENDADO */ ?>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">                                
-<?php $usuario->MostraDestaque(); /* DESTAQUE */ ?>
+                            <?php $usuario->MostraDestaque(); /* DESTAQUE */ ?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-<?php $usuario->MostraVisitados(); /* ASSISTIR NOVAMENTE */ ?>
+                            <?php @$usuario->MostraVisitados(); /* ASSISTIR NOVAMENTE */ ?>
 
                         </div>                        
                     </div>

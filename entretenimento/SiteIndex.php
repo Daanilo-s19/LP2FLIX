@@ -276,7 +276,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <?php $usuario->MostraDestaque(); /* DESTAQUE*/ ?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                            <?php $usuario->MostraVisitados();/* ASSISTIR NOVAMENTE */?>
+                            <?php @$usuario->MostraVisitados();/* ASSISTIR NOVAMENTE */?>
 
                         </div>                        
                     </div>

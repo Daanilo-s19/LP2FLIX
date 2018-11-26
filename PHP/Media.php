@@ -37,13 +37,11 @@ abstract class Media {
                                                 <div class=\"mid-2 agile_mid_2_home\">
                                                     <p>{$this->ano}</p>
                                                     <div class=\"block-stars\">
-                                                        <ul class=\"w3l-ratings\">
-                                                            <li><a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a></li>
-                                                            <li><a href=\"#\"><i class=\"fa fa-star-half-o\" aria-hidden=\"true\"></i></a></li>
-                                                            <li><a href=\"#\"><i class=\"fa fa-star-o\" aria-hidden=\"true\"></i></a></li>
-                                                            <li><a href=\"#\"><i class=\"fa fa-star-o\" aria-hidden=\"true\"></i></a></li>
-                                                            <li><a href=\"#\"><i class=\"fa fa-star-o\" aria-hidden=\"true\"></i></a></li>
-                                                        </ul>
+                                                        <ul class=\"w3l-ratings\">";
+                                                          for($i =0; $i < $this->getAvaliacao(); $i++)
+                                                           echo" <li><a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a></li>";
+                                                            
+                                                       echo "</ul>
                                                     </div>
                                                     <div class=\"clearfix\"></div>
                                                 </div>
@@ -67,13 +65,17 @@ abstract class Media {
                                                 <p class=\"fexi_header_para\"><span class=\"conjuring_w3\">SINOPSE<label>:</label></span>{$video->getSinopse()}</p>
                                                 <p class=\"fexi_header_para\"><span>LANCAMENTO<label>:</label></span>{$video->getAno()}</p>
                                                 <p class=\"fexi_header_para\"><span>CLASSIFICAÇÃO<label>:</label></span>{$video->getClassificacao()} anos</p>
-                                                  <p class=\"fexi_header_para\"><span>DURACAO<label>:</label></span>{$video->getDuracao()} min.</p>
+                                                <p class=\"fexi_header_para\"><span>DURACAO<label>:</label></span>{$video->getDuracao()} min.</p>
                                                 <p class=\"fexi_header_para\"><span>GENERO<label>:</label></span>{$video->getGenero()} </p>
-                                                 <p class=\"fexi_header_para\"><span>DIRETOR<label>:</label></span>{$video->getDiretor()}</p>
-                                                 <p class=\"fexi_header_para\"><span>ELENCO<label>:</label> </span>{$video->getElenco()}</p>
-                                                <p class=\"fexi_header_para fexi_header_para1\"><span>ESTRELAS<label>:</label></span>{$video->getDuracao()}
-                                                    <a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a></p>";
+                                                <p class=\"fexi_header_para\"><span>DIRETOR<label>:</label></span>{$video->getDiretor()}</p>
+                                                <p class=\"fexi_header_para\"><span>ELENCO<label>:</label> </span>{$video->getElenco()}</p>";
+                                                for($i =0; $i < $video->getAvaliacao(); $i++){
+                                                    if($i== 0)echo "<p  class=\"fexi_header_para fexi_header_para1\"><span>ESTRELAS<label>:</label></span>"; 
+                                                    echo"<a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a></li>";
+                                                }
+                                               echo "</p>";
     }
+    
 
     public function corousel($login) {
         $lista = 0;
@@ -101,8 +103,9 @@ abstract class Media {
             }
         }
     }
+
     abstract function Exibircategoria($login);
-    
+
     public function __destruct() {
         $this->db->closeDB();
     }
