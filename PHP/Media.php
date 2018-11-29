@@ -55,8 +55,8 @@ abstract class Media {
          <div class=\"container\">
                    <div class=\"col-md-6 agile_tv_series_grid_left\">
                                                 <div class=\"w3ls_market_video_grid1\">
-                                                   <a href=\"https://www.youtube.com/results?search_query={$video->getTitulo()}\" class=\"hvr-shutter-out-horizontal\"> <img src=\"ExibirImages/{$video->getImagem()}\"alt=\" \" class=\"img-responsive\" />
-                                                    <a href=\"https://www.youtube.com/results?search_query={$video->getTitulo()}\"  class=\"w3_play_icon\" href=\"#small-dialog\">
+                                                   <a href=\"https://www.youtube.com/results?search_query={$video->getTitulo()}\" target=\"_blank\" class=\"hvr-shutter-out-horizontal\"> <img src=\"ExibirImages/{$video->getImagem()}\"alt=\" \" class=\"img-responsive\" />
+                                                    <a href=\"https://www.youtube.com/results?search_query={$video->getTitulo()}\" target=\"_blank\" class=\"w3_play_icon\" href=\"#small-dialog\">
                                                         <span class=\"glyphicon glyphicon-play-circle\" aria-hidden=\"true\"></span>
                                                     </a>
                                                 </div>

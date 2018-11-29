@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2018-11-21T21:35:44" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+<XMI verified="false" xmi.version="1.2" timestamp="2018-11-29T20:22:47" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -285,6 +285,24 @@
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uHoRLYU2Rmzn6" name="elenco"/>
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ulsUweFablw5Q" name="text"/>
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uDvKho94sC8Zj" name="dbController"/>
+      <UML:Association visibility="public" isSpecification="false" namespace="Logical_View" xmi.id="uhsAc9EvbXjPN" name="">
+       <UML:Association.connection>
+        <UML:AssociationEnd changeability="changeable" visibility="public" isNavigable="true" isSpecification="false" xmi.id="uJvUwJ8FEMFNz" type="uNDmR0IEe11s5" name="" aggregation="composite"/>
+        <UML:AssociationEnd changeability="changeable" visibility="public" isNavigable="true" isSpecification="false" xmi.id="uahQbWIrp7iDA" type="u27RZJVmyvsKJ" name="" aggregation="none"/>
+       </UML:Association.connection>
+      </UML:Association>
+      <UML:Association visibility="public" isSpecification="false" namespace="Logical_View" xmi.id="u1soldXV0PUg2" name="">
+       <UML:Association.connection>
+        <UML:AssociationEnd changeability="changeable" visibility="public" isNavigable="true" isSpecification="false" xmi.id="u4rMVxLsBsvPt" type="u27RZJVmyvsKJ" name="" aggregation="composite"/>
+        <UML:AssociationEnd changeability="changeable" visibility="public" isNavigable="true" isSpecification="false" xmi.id="uI8jOMo9ysm7Q" type="u0j0ABX1wQHTZ" name="" aggregation="none"/>
+       </UML:Association.connection>
+      </UML:Association>
+      <UML:Association visibility="public" isSpecification="false" namespace="Logical_View" xmi.id="uNoJugTXzFams" name="">
+       <UML:Association.connection>
+        <UML:AssociationEnd changeability="changeable" visibility="public" isNavigable="true" isSpecification="false" xmi.id="u8OUXUf9vJaFE" type="u27RZJVmyvsKJ" name="" aggregation="composite"/>
+        <UML:AssociationEnd changeability="changeable" visibility="public" isNavigable="true" isSpecification="false" xmi.id="uHiS62bkFq993" type="uNDmR0IEe11s5" name="" aggregation="none"/>
+       </UML:Association.connection>
+      </UML:Association>
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello">
       <diagrams resolution="96">
@@ -298,22 +316,10 @@
         </widgets>
         <messages/>
         <associations>
-         <assocwidget indexa="1" linecolor="#ff0000" indexb="1" usesdiagramfillcolor="1" widgetbid="u0j0ABX1wQHTZ" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="u27RZJVmyvsKJ" font="Sans Serif,9,-1,0,50,0,0,0,0,0" usefillcolor="1" fillcolor="none" xmi.id="umxQ47oI6V4vL" autoresize="1" type="503">
-          <linepath layout="Polyline">
-           <startpoint startx="-447.442" starty="-574.773"/>
-           <endpoint endx="-398.922" endy="-559.28"/>
-          </linepath>
-         </assocwidget>
          <assocwidget indexa="1" linecolor="#ff0000" indexb="1" usesdiagramfillcolor="1" widgetbid="u0j0ABX1wQHTZ" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="uXz4duAdmZqFy" font="Sans Serif,9,-1,0,50,0,0,0,0,0" usefillcolor="1" fillcolor="none" xmi.id="ujA9BC5kwTr4d" autoresize="1" type="500">
           <linepath layout="Polyline">
            <startpoint startx="-398.922" starty="-225.753"/>
            <endpoint endx="-398.922" endy="-304.28"/>
-          </linepath>
-         </assocwidget>
-         <assocwidget indexa="1" linecolor="#ff0000" indexb="1" usesdiagramfillcolor="1" widgetbid="uNDmR0IEe11s5" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="u27RZJVmyvsKJ" font="Sans Serif,9,-1,0,50,0,0,0,0,0" usefillcolor="1" fillcolor="none" xmi.id="ubyLoydMtV2zs" autoresize="1" type="503">
-          <linepath layout="Polyline">
-           <startpoint startx="-556.442" starty="-574.773"/>
-           <endpoint endx="-590.957" endy="-563.329"/>
           </linepath>
          </assocwidget>
          <assocwidget indexa="1" linecolor="#ff0000" indexb="1" usesdiagramfillcolor="1" widgetbid="u0j0ABX1wQHTZ" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="uNDmR0IEe11s5" font="Sans Serif,9,-1,0,50,0,0,0,0,0" usefillcolor="1" fillcolor="none" xmi.id="up0CNfDRkJ1Cf" autoresize="1" type="510">
@@ -326,6 +332,18 @@
           <linepath layout="Polyline">
            <startpoint startx="-284.148" starty="-229.311"/>
            <endpoint endx="-284.148" endy="-304.28"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" linecolor="#ff0000" indexb="1" usesdiagramfillcolor="1" widgetbid="u0j0ABX1wQHTZ" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="u27RZJVmyvsKJ" font="Sans Serif,9,-1,0,50,0,0,0,0,0" usefillcolor="1" fillcolor="none" xmi.id="u1soldXV0PUg2" autoresize="1" type="510">
+          <linepath layout="Polyline">
+           <startpoint startx="-447.442" starty="-574.773"/>
+           <endpoint endx="-398.922" endy="-559.28"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" linecolor="#ff0000" indexb="1" usesdiagramfillcolor="1" widgetbid="uNDmR0IEe11s5" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" widgetaid="u27RZJVmyvsKJ" font="Sans Serif,9,-1,0,50,0,0,0,0,0" usefillcolor="1" fillcolor="none" xmi.id="uNoJugTXzFams" autoresize="1" type="510">
+          <linepath layout="Polyline">
+           <startpoint startx="-556.442" starty="-574.773"/>
+           <endpoint endx="-590.957" endy="-563.329"/>
           </linepath>
          </assocwidget>
         </associations>
@@ -349,7 +367,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings viewid="uHI4Yt2Tz35CK" uniqueid="uFErxEMu2lAOg" documentation=""/>
+  <docsettings viewid="uHI4Yt2Tz35CK" uniqueid="uRTdje60dq78k" documentation=""/>
   <listview>
    <listitem open="1" type="800" id="Views">
     <listitem open="1" type="821" id="Component_View"/>
