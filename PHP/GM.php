@@ -154,12 +154,14 @@ class Usuario {
         if ($this->login == "admin" and $this->senha == md5("admin"))
             header("Location:../IndexMASTER.php");
         else {
-            $results = $this->db->selectDB("SELECT * FROM usuarios WHERE login = '$this->login'");
-            foreach ($results as $senha){
-                if($senha["senha"] == $this->GetSenha())
-                    $passou = true;
+            if(ctype_alnum($login)){
+                $results = $this->db->selectDB("SELECT * FROM usuarios WHERE login = '$this->login'");
+                foreach ($results as $senha){
+                    if($senha["senha"] == $this->GetSenha())
+                        $passou = true;
+                }
             }
-            
+            else $passou = false;
             if ($passou) {
                 setcookie("login", $this->login);
                 header("Location:../entretenimento/SiteIndex.php?login={$this->login}");
@@ -239,8 +241,10 @@ class Usuario {
         echo "<!-- Latest-tv-series -->
         <div class=\"Latest-tv-series\">
             <div class=\"container\">";
-        $results = $this->db->selectDB("SELECT * FROM midia WHERE INSTR(titulo, '$procurar')");
-        if ($results != NULL) {
+        $results = [];
+        if($procura[0] != ';')
+            $results = $this->db->selectDB("SELECT * FROM midia WHERE INSTR(titulo, '$procurar')");
+        if (!empty($results)) {
             foreach ($results as $midia) {
                 if ($midia["tipo"] == "FILME") {
                     $video = new Filme($midia["indice"], $midia["tipo"], $midia["genero"], $midia["titulo"], $midia["diretor"], $midia["elenco"], $midia["imagem"], $midia["sinopse"], $midia["ano"], $midia["avaliacao"], $midia["duracao"], $midia["classificacao"], $midia["bilheteria"]);
